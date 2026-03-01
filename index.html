@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Quantum Tech Club at the University of Rhode Island — exploring quantum technologies together." />
+  <title>Quantum Tech Club @ URI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+
+  <header class="topbar" data-elevate-on-scroll>
+    <div class="container topbar__inner">
+      <a class="brand" href="#top" aria-label="Quantum Tech Club home">
+        <span class="brand__text">Quantum Tech Club</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link" href="#mission">Mission</a>
+        <a class="nav__link" href="#eboard">E-Board</a>
+        <a class="nav__link" href="#involved">Get Involved</a>
+        <a class="nav__link" href="#feedback">Feedback</a>
+        <a class="nav__link" href="#faq">FAQ</a>
+      </nav>
+
+      <div class="topbar__actions">
+        <div class="topbar__socials">
+          <a class="topbar__social-link" href="mailto:quantumtechcluburi@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3.5 6.5h17a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-17a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z"/>
+              <path d="M3 7l9 7 9-7"/>
+            </svg>
+          </a>
+          <a class="topbar__social-link" href="https://www.instagram.com/quantumtechclub.uri/" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="5"/>
+              <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+        </div>
+        <a class="button button--primary topbar__join"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSftxDyaVzKB_nCT88hQTJkKmbJ-tHtZYNhCINDfICO9A8xuGg/viewform?usp=header"
+          target="_blank" rel="noreferrer">Join Club</a>
+      </div>
+
+      <button class="icon-button" type="button" aria-label="Open menu" aria-controls="mobileMenu"
+        aria-expanded="false" data-mobile-menu-button>
+        <span class="icon-button__bars" aria-hidden="true"><span></span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu" hidden data-mobile-menu>
+      <div class="container mobile-menu__inner">
+        <a class="mobile-menu__link" href="#mission">Mission</a>
+        <a class="mobile-menu__link" href="#eboard">E-Board</a>
+        <a class="mobile-menu__link" href="#involved">Get involved</a>
+        <a class="mobile-menu__link" href="#feedback">Feedback</a>
+        <a class="mobile-menu__link" href="#faq">FAQ</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero__bg" aria-hidden="true">
+        <span class="hero__orb hero__orb--a"></span>
+        <span class="hero__orb hero__orb--b"></span>
+        <span class="hero__orb hero__orb--c"></span>
+      </div>
+
+      <div class="container hero__inner">
+        <div class="hero__copy reveal">
+          <div class="hero__heading">
+            <div class="hero__logo" aria-hidden="true">
+              <img src="./assets/quantum-tech-club-logo.png" alt="" class="hero__logo-image" />
+            </div>
+            <h1 class="hero__title hero__title--gradient">
+              One&nbsp;Technology.<br>
+              Every Industry.<br>
+              Infinite Impact.
+            </h1>
+          </div>
+        </div>
+
+        <div class="hero__next reveal" id="next">
+          <div class="next-card" data-next-event>
+            <div class="next-card__main">
+              <p class="next-card__label">Next meeting</p>
+              <h3 class="next-card__title" data-next-title>Loading next meeting...</h3>
+              <p class="next-card__meta" data-next-meta>Fetching date, time, and location...</p>
+            </div>
+            <div class="next-card__timer" aria-label="Time remaining until next meeting">
+              <div class="next-card__timer-item">
+                <div class="next-card__timer-value" data-countdown-part="days">--</div>
+                <div class="next-card__timer-label">Days</div>
+              </div>
+              <div class="next-card__timer-item">
+                <div class="next-card__timer-value" data-countdown-part="hours">--</div>
+                <div class="next-card__timer-label">Hours</div>
+              </div>
+              <div class="next-card__timer-item">
+                <div class="next-card__timer-value" data-countdown-part="minutes">--</div>
+                <div class="next-card__timer-label">Minutes</div>
+              </div>
+              <div class="next-card__timer-item">
+                <div class="next-card__timer-value" data-countdown-part="seconds">--</div>
+                <div class="next-card__timer-label">Seconds</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="section" id="mission">
+      <div class="section__line" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section__header section__header--center reveal">
+          <h2>Mission</h2>
+          <p>
+            A student-led space at URI to explore quantum computing, communication, and sensing
+            through talks, hands-on workshops, and projects.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <article class="feature-card reveal" style="--d: 0ms">
+            <h3>Learn together</h3>
+            <p>
+              Short talks, guided study, and friendly explanations—no prior
+              background required.
+            </p>
+            <button class="link-button" data-open-modal="mission">
+              Full mission
+            </button>
+          </article>
+          <article class="feature-card reveal" style="--d: 80ms">
+            <h3>Build real things</h3>
+            <p>
+              Hands-on projects, demos, and collaboration—ship a portfolio
+              piece with a team.
+            </p>
+            <button class="link-button" data-open-modal="projects">
+              What we build
+            </button>
+          </article>
+          <article class="feature-card reveal" style="--d: 160ms">
+            <h3>Make it welcoming</h3>
+            <p>
+              Pairing, office hours, and community norms that help everyone
+              participate.
+            </p>
+            <button class="link-button" data-open-modal="culture">
+              Club culture
+            </button>
+          </article>
+          <article class="feature-card reveal" style="--d: 240ms">
+            <h3>Explore and grow</h3>
+            <p>
+              A space to learn, experiment, and connect with others interested
+              in quantum technologies.
+            </p>
+            <button class="link-button" data-open-modal="mission">
+              Learn more
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="eboard">
+      <div class="section__line" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section__header section__header--center reveal">
+          <h2>E-Board</h2>
+        </div>
+
+        <div class="people-grid">
+          <article class="person-card reveal" style="--d: 0ms" data-person-card tabindex="0"
+            aria-label="Damian Lapena Vidal card">
+            <div class="person-card__inner">
+              <section class="person-card__face person-card__face--front">
+                <div class="person-card__avatar-wrap">
+                  <span class="person-card__avatar-ring" aria-hidden="true"></span>
+                  <span class="person-card__avatar">
+                    <img class="person-card__avatar-image" src="assets/damian-lapena-vidal.jpg"
+                      alt="Damian Lapena Vidal profile photo">
+                  </span>
+                </div>
+                <h3 class="person-card__name">Damian Lapena Vidal</h3>
+                <p class="person-card__role">President & Founder</p>
+                <div class="person-card__links">
+                  <a class="person-card__icon-link" href="https://www.linkedin.com/" target="_blank" rel="noreferrer"
+                    aria-label="Damian Lapena Vidal LinkedIn">in</a>
+                  <a class="person-card__icon-link person-card__icon-link--mail" href="mailto:damian@example.com"
+                    aria-label="Email Damian Lapena Vidal">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M3.5 6.5h17a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-17a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z" />
+                      <path d="M3 7l9 7 9-7" />
+                    </svg>
+                  </a>
+                </div>
+                <button class="person-card__flip" type="button" data-person-flip
+                  aria-label="Show more info about Damian Lapena Vidal">→</button>
+              </section>
+              <section class="person-card__face person-card__face--back">
+                <h3 class="person-card__name">Damian Lapena Vidal</h3>
+                <dl class="person-card__details">
+                  <dt>Major:</dt>
+                  <dd>Computer Engineering</dd>
+                  <dt>Class year:</dt>
+                  <dd>2027</dd>
+                  <dt>Fun fact:</dt>
+                  <dd>I'm from Spain.</dd>
+                </dl>
+                <button class="person-card__flip" type="button" data-person-flip
+                  aria-label="Show front of Damian Lapena Vidal card">→</button>
+              </section>
+            </div>
+          </article>
+
+          <article class="person-card reveal" style="--d: 80ms" data-person-card tabindex="0"
+            aria-label="Vice President card">
+            <div class="person-card__inner">
+              <section class="person-card__face person-card__face--front">
+                <div class="person-card__avatar-wrap">
+                  <span class="person-card__avatar-ring" aria-hidden="true"></span>
+                  <span class="person-card__avatar">
+                    <span class="person-card__avatar-fallback"></span>
+                  </span>
+                </div>
+                <h3 class="person-card__name">Full Name</h3>
+                <p class="person-card__role">Leader</p>
+                <div class="person-card__links">
+                  <a class="person-card__icon-link" href="https://www.linkedin.com/" target="_blank" rel="noreferrer"
+                    aria-label="Vice President LinkedIn">in</a>
+                  <a class="person-card__icon-link person-card__icon-link--mail" href="mailto:vp@example.com"
+                    aria-label="Email Vice President">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M3.5 6.5h17a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-17a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z" />
+                      <path d="M3 7l9 7 9-7" />
+                    </svg>
+                  </a>
+                </div>
+                <button class="person-card__flip" type="button" data-person-flip
+                  aria-label="Show more info about the Vice President">→</button>
+              </section>
+              <section class="person-card__face person-card__face--back">
+                <h3 class="person-card__name">Full Name</h3>
+                <dl class="person-card__details">
+                  <dt>Major:</dt>
+                  <dd>Major here</dd>
+                  <dt>Class year:</dt>
+                  <dd>Year here</dd>
+                  <dt>Fun fact:</dt>
+                  <dd>Fun fact here.</dd>
+                </dl>
+                <button class="person-card__flip" type="button" data-person-flip
+                  aria-label="Show front of Vice President card">→</button>
+              </section>
+            </div>
+          </article>
+
+          <article class="person-card reveal" style="--d: 160ms" data-person-card tabindex="0"
+            aria-label="Treasurer card">
+            <div class="person-card__inner">
+              <section class="person-card__face person-card__face--front">
+                <div class="person-card__avatar-wrap">
+                  <span class="person-card__avatar-ring" aria-hidden="true"></span>
+                  <span class="person-card__avatar">
+                    <span class="person-card__avatar-fallback"></span>
+                  </span>
+                </div>
+                <h3 class="person-card__name">Full Name</h3>
+                <p class="person-card__role">Leader</p>
+                <div class="person-card__links">
+                  <a class="person-card__icon-link" href="https://www.linkedin.com/" target="_blank" rel="noreferrer"
+                    aria-label="Treasurer LinkedIn">in</a>
+                  <a class="person-card__icon-link person-card__icon-link--mail" href="mailto:treasurer@example.com"
+                    aria-label="Email Treasurer">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M3.5 6.5h17a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-17a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z" />
+                      <path d="M3 7l9 7 9-7" />
+                    </svg>
+                  </a>
+                </div>
+                <button class="person-card__flip" type="button" data-person-flip
+                  aria-label="Show more info about the Treasurer">→</button>
+              </section>
+              <section class="person-card__face person-card__face--back">
+                <h3 class="person-card__name">Full Name</h3>
+                <dl class="person-card__details">
+                  <dt>Major:</dt>
+                  <dd>Major here</dd>
+                  <dt>Class year:</dt>
+                  <dd>Year here</dd>
+                  <dt>Fun fact:</dt>
+                  <dd>Fun fact here.</dd>
+                </dl>
+                <button class="person-card__flip" type="button" data-person-flip
+                  aria-label="Show front of Treasurer card">→</button>
+              </section>
+            </div>
+          </article>
+
+          <article class="person-card reveal" style="--d: 240ms" data-person-card tabindex="0"
+            aria-label="Secretary card">
+            <div class="person-card__inner">
+              <section class="person-card__face person-card__face--front">
+                <div class="person-card__avatar-wrap">
+                  <span class="person-card__avatar-ring" aria-hidden="true"></span>
+                  <span class="person-card__avatar">
+                    <span class="person-card__avatar-fallback"></span>
+                  </span>
+                </div>
+                <h3 class="person-card__name">Full Name</h3>
+                <p class="person-card__role">Leader</p>
+                <div class="person-card__links">
+                  <a class="person-card__icon-link" href="https://www.linkedin.com/" target="_blank" rel="noreferrer"
+                    aria-label="Secretary LinkedIn">in</a>
+                  <a class="person-card__icon-link person-card__icon-link--mail" href="mailto:secretary@example.com"
+                    aria-label="Email Secretary">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M3.5 6.5h17a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-17a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z" />
+                      <path d="M3 7l9 7 9-7" />
+                    </svg>
+                  </a>
+                </div>
+                <button class="person-card__flip" type="button" data-person-flip
+                  aria-label="Show more info about the Secretary">→</button>
+              </section>
+              <section class="person-card__face person-card__face--back">
+                <h3 class="person-card__name">Full Name</h3>
+                <dl class="person-card__details">
+                  <dt>Major:</dt>
+                  <dd>Major here</dd>
+                  <dt>Class year:</dt>
+                  <dd>Year here</dd>
+                  <dt>Fun fact:</dt>
+                  <dd>Fun fact here.</dd>
+                </dl>
+                <button class="person-card__flip" type="button" data-person-flip
+                  aria-label="Show front of Secretary card">→</button>
+              </section>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section" id="involved">
+      <div class="section__line" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section__header section__header--center reveal">
+          <h2>Get Involved</h2>
+          <p>Collaborate with us. We welcome speakers, mentors, and new ideas.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="feature-card reveal" style="--d: 0ms">
+            <h3>Give a talk</h3>
+            <p>
+              Share your research, a recent breakthrough, or a topic you’re
+              passionate about with an engaged audience.
+            </p>
+            <button class="link-button" data-open-modal="events">
+              Speaker info
+            </button>
+          </article>
+          <article class="feature-card reveal" style="--d: 80ms">
+            <h3>Teach a workshop</h3>
+            <p>
+              Lead a hands-on session on quantum tools, programming
+              frameworks, or emerging techniques.
+            </p>
+            <button class="link-button" data-open-modal="workshop">
+              Workshop details
+            </button>
+          </article>
+          <article class="feature-card reveal" style="--d: 160ms">
+            <h3>Present an idea</h3>
+            <p>
+              Pitch a project, propose a collaboration, or demo something
+              you’ve been working on.
+            </p>
+            <button class="link-button" data-open-modal="leadership">
+              Pitch to us
+            </button>
+          </article>
+          <article class="feature-card reveal" style="--d: 240ms">
+            <h3>Career opportunities</h3>
+            <p>
+              Connect students with internships, research positions, and
+              industry roles in quantum tech.
+            </p>
+            <button class="link-button" data-open-modal="careers">
+              Share a listing
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="feedback">
+      <div class="section__line" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section__header section__header--center reveal">
+          <h2>Feedback</h2>
+          <p>
+            Real vibes. Replace these with quotes from your club and we’ll make
+            them shine.
+          </p>
+        </div>
+
+        <div class="feedback-quotes">
+          <div class="feedback-quotes__track">
+            <article class="quote-card reveal" style="--d: 0ms">
+              <p class="quote-card__quote">
+                “I showed up knowing nothing and left with a project I can
+                actually explain.”
+              </p>
+              <p class="quote-card__meta">— First-year member</p>
+            </article>
+            <article class="quote-card reveal" style="--d: 80ms">
+              <p class="quote-card__quote">
+                “It’s the first place I felt comfortable asking ‘basic’
+                questions.”
+              </p>
+              <p class="quote-card__meta">— New to the topic</p>
+            </article>
+            <article class="quote-card reveal" style="--d: 160ms">
+              <p class="quote-card__quote">
+                “The workshops are practical, and the people are kind. That’s a
+                rare combo.”
+              </p>
+              <p class="quote-card__meta">— Returning member</p>
+            </article>
+            <article class="quote-card reveal" style="--d: 240ms">
+              <p class="quote-card__quote">
+                “I came for the quantum, stayed for the community. Best decision
+                of my semester.”
+              </p>
+              <p class="quote-card__meta">— Sophomore, Physics</p>
+            </article>
+            <article class="quote-card reveal" style="--d: 320ms">
+              <p class="quote-card__quote">
+                “As a CS major I never thought quantum was accessible. This club
+                proved me wrong in one meeting.”
+              </p>
+              <p class="quote-card__meta">— Junior, Computer Science</p>
+            </article>
+            <article class="quote-card reveal" style="--d: 400ms">
+              <p class="quote-card__quote">
+                “The guest speakers alone are worth showing up for. Real
+                researchers sharing real work.”
+              </p>
+              <p class="quote-card__meta">— Graduate student</p>
+            </article>
+          </div>
+
+          <div class="feedback-quotes__submit reveal">
+            <button class="feedback-quotes__arrow feedback-quotes__arrow--left" type="button" aria-label="Scroll quotes left" data-quotes-prev>‹</button>
+            <button class="button button--primary" data-open-modal="testimonials">
+              Submit Feedback
+            </button>
+            <button class="feedback-quotes__arrow feedback-quotes__arrow--right" type="button" aria-label="Scroll quotes right" data-quotes-next>›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="section__line" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section__header section__header--center reveal">
+          <h2>FAQ</h2>
+          <p>Quick answers to the most common questions we hear about Quantum Tech Club @URI.</p>
+        </div>
+        <div class="faq-list">
+          <article class="faq-item reveal" style="--d: 0ms" data-faq-item>
+            <h3>
+              <button class="faq-item__button" type="button" aria-expanded="false" data-faq-toggle>
+                <span>Do I need prior experience?</span>
+                <span class="faq-item__arrow" aria-hidden="true">▾</span>
+              </button>
+            </h3>
+            <div class="faq-item__panel" hidden>
+              <p>No. We explain concepts from the ground up and point you to starter resources.</p>
+            </div>
+          </article>
+          <article class="faq-item reveal" style="--d: 80ms" data-faq-item>
+            <h3>
+              <button class="faq-item__button" type="button" aria-expanded="false" data-faq-toggle>
+                <span>Who can attend?</span>
+                <span class="faq-item__arrow" aria-hidden="true">▾</span>
+              </button>
+            </h3>
+            <div class="faq-item__panel" hidden>
+              <p>Any URI student interested in quantum technologies. Guests are welcome when space allows.</p>
+            </div>
+          </article>
+          <article class="faq-item reveal" style="--d: 160ms" data-faq-item>
+            <h3>
+              <button class="faq-item__button" type="button" aria-expanded="false" data-faq-toggle>
+                <span>How do I get more involved?</span>
+                <span class="faq-item__arrow" aria-hidden="true">▾</span>
+              </button>
+            </h3>
+            <div class="faq-item__panel" hidden>
+              <p>Fill out the interest form, and we’ll reach out about projects, workshops, and speaking opportunities.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="brand__text">Quantum Tech Club</span>
+        <span class="footer__small">© <span data-year></span></span>
+      </div>
+      <div class="footer__links">
+        <button class="link-button" data-open-modal="resources">Resources</button>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" data-modal aria-hidden="true">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal__header">
+        <h3 id="modalTitle" class="modal__title"></h3>
+        <button class="icon-button" type="button" aria-label="Close" data-modal-close>
+          <span class="icon-button__x" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="modal__body" data-modal-body></div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>

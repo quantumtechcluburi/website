@@ -172,21 +172,26 @@ const MODALS = {
       </div>
     `,
   },
-  leadership: {
-    title: "Present an idea",
+  newsletter: {
+    title: "Contribute to the newsletter",
     body: () => `
-      <p>Have a project concept, a collaboration proposal, or something you've been building? Pitch it to ${SITE.clubName}.</p>
-      <h4>What you can pitch</h4>
+      <p>We want everyone’s ideas on what to feature next.</p>
+      <h4>Good submission ideas</h4>
       <ul>
-        <li>A project idea you'd like to co-develop with members</li>
-        <li>A cross-department or cross-club collaboration</li>
-        <li>A demo of your own work for feedback</li>
-        <li>A research direction you'd like student help with</li>
+        <li>Interesting internships or job postings</li>
+        <li>Recent advances from academia or industry (short summaries only)</li>
+        <li>Useful learning resources: tutorials, videos, papers, tools</li>
+        <li>Project highlights, club wins, and hackathon opportunities</li>
       </ul>
-      <h4>How it works</h4>
-      <p>Send a brief outline (a few sentences is fine) and we'll find a slot for you at an upcoming meeting.</p>
+      <h4>Submission format</h4>
+      <ul>
+        <li>Title + 2–4 sentence blurb</li>
+        <li>Optional link(s) for readers to explore</li>
+        <li>Your name and preferred display credit (or anonymous)</li>
+      </ul>
       <div class="modal-actions">
-        <button class="button button--ghost" data-open-modal="contact">Send your pitch</button>
+        <a class="button button--primary" href="mailto:${SITE.links.email}?subject=Quantum%20Tech%20Club%20Newsletter%20Submission" rel="noreferrer">Email your idea</a>
+        <button class="button button--ghost" data-open-modal="contact">Contact the team</button>
       </div>
     `,
   },

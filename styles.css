@@ -667,6 +667,7 @@ button {
 .section[data-scroll-motion="on"] .feedback-quotes,
 .section[data-scroll-motion="on"] .metric,
 .section[data-scroll-motion="on"] .partners-grid,
+.section[data-scroll-motion="on"] .advisors-grid,
 .section[data-scroll-motion="on"] .faq-list {
   transform: translate3d(0, calc(var(--section-scroll) * 0.18), 0) scale(var(--box-zoom));
   transform-origin: center top;
@@ -684,7 +685,7 @@ button {
   );
 }
 
-#eboard {
+#leadership {
   --section-base-a: #1b5cad;
   --section-base-b: #15519a;
   --section-accent: radial-gradient(
@@ -694,7 +695,7 @@ button {
   );
 }
 
-#involved {
+#collaborate {
   --section-base-a: #1d6cbc;
   --section-base-b: #1355a0;
   --section-accent: linear-gradient(
@@ -808,22 +809,22 @@ button {
     linear-gradient(150deg, rgba(255, 255, 255, 0.36) 0%, rgba(219, 234, 254, 0.22) 40%, rgba(22, 82, 152, 0.58) 100%);
 }
 
-#involved .card-grid {
+#collaborate .card-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1.4rem, 2.8vw, 2.2rem);
 }
 
-#involved .feature-card:nth-child(2) {
+#collaborate .feature-card:nth-child(2) {
   background:
     linear-gradient(148deg, rgba(255, 255, 255, 0.36) 0%, rgba(125, 211, 252, 0.22) 42%, rgba(29, 108, 188, 0.6) 100%);
 }
 
-#involved .feature-card:nth-child(3) {
+#collaborate .feature-card:nth-child(3) {
   background:
     linear-gradient(148deg, rgba(255, 255, 255, 0.36) 0%, rgba(147, 197, 253, 0.22) 42%, rgba(25, 88, 162, 0.58) 100%);
 }
 
-#involved .feature-card:nth-child(4) {
+#collaborate .feature-card:nth-child(4) {
   background:
     linear-gradient(150deg, rgba(255, 255, 255, 0.36) 0%, rgba(219, 234, 254, 0.2) 40%, rgba(19, 85, 160, 0.58) 100%);
 }
@@ -839,20 +840,165 @@ button {
   line-height: 1.55;
 }
 
-/* E-board */
+/* Leadership */
 .people-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(1rem, 2.1vw, 1.6rem);
+  gap: clamp(0.9rem, 1.8vw, 1.5rem);
   padding-inline: clamp(0.2rem, 1vw, 0.7rem);
+  align-items: stretch;
+}
+
+#leadership .people-grid {
+  --card-pad: clamp(1rem, 1.4vw, 1.35rem);
+  --avatar-outer: clamp(6.4rem, 8.5vw, 8.25rem);
+  --avatar-inner: clamp(4.6rem, 6.1vw, 5.95rem);
+  --name-size: clamp(1rem, 1.2vw, 1.32rem);
+  --role-size: clamp(0.85rem, 1vw, 0.96rem);
+  --icon-size: clamp(2.2rem, 2.7vw, 2.6rem);
+  --flip-size: clamp(2rem, 2.4vw, 2.4rem);
+  --face-gap: clamp(0.4rem, 0.75vw, 0.65rem);
+}
+
+.leadership-advisor-header {
+  margin-top: clamp(2.2rem, 4.5vw, 3.2rem);
+  margin-bottom: clamp(0.85rem, 2vw, 1.25rem);
+}
+
+.leadership-advisor-header h3 {
+  margin: 0;
+  font-size: clamp(1.25rem, 3vw, 1.55rem);
+  letter-spacing: -0.02em;
+}
+
+.advisors-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.4vw, 1.75rem);
+  width: min(100%, 40rem);
+  margin-inline: auto;
+  padding-inline: clamp(0.75rem, 3vw, 1.25rem);
+}
+
+.advisors-grid--single {
+  grid-template-columns: minmax(0, 1fr);
+  width: min(100%, 28rem);
+}
+
+.advisor-card {
+  display: grid;
+  justify-items: center;
+  gap: clamp(0.35rem, 1.2vw, 0.55rem);
+  border-radius: clamp(1.1rem, 2.5vw, 1.5rem);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.38) 0%, rgba(219, 234, 254, 0.2) 36%, rgba(24, 86, 156, 0.6) 100%);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  padding:
+    clamp(1.35rem, 4vw, 2.1rem)
+    clamp(1.25rem, 5vw, 2.4rem)
+    clamp(1.25rem, 3.5vw, 1.85rem);
+  text-align: center;
+  min-width: 0;
+}
+
+.advisor-card__note {
+  margin: 0;
+  font-size: clamp(0.85rem, 2.2vw, 0.98rem);
+  letter-spacing: 0.02em;
+  color: rgba(186, 230, 253, 0.98);
+  font-weight: 600;
+}
+
+.advisor-card__name {
+  margin: clamp(0.15rem, 0.8vw, 0.35rem) 0 0;
+  font-size: clamp(1.35rem, 4.2vw, 1.85rem);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  max-width: 100%;
+}
+
+.advisor-card__role {
+  margin: 0;
+  font-size: clamp(0.98rem, 2.6vw, 1.12rem);
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.advisor-card__dept,
+.advisor-card__meta {
+  margin: 0;
+  font-size: clamp(0.92rem, 2.4vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.45;
+  max-width: 28ch;
+}
+
+.advisor-card__links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.65rem, 2.2vw, 0.95rem);
+  margin-top: clamp(0.75rem, 2.4vw, 1.15rem);
+}
+
+.advisor-card__icon {
+  width: clamp(2.65rem, 8vw, 3.15rem);
+  height: clamp(2.65rem, 8vw, 3.15rem);
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.98);
+  font-size: clamp(1.05rem, 3vw, 1.25rem);
+  font-weight: 800;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.12);
+  transition: background 180ms var(--ease), transform 180ms var(--ease);
+  flex: 0 0 auto;
+}
+
+.advisor-card__icon:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+.advisor-card__icon svg {
+  width: clamp(1.15rem, 3.4vw, 1.35rem);
+  height: clamp(1.15rem, 3.4vw, 1.35rem);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 700px) {
+  .advisors-grid,
+  .advisors-grid--single {
+    width: min(100%, 22rem);
+    padding-inline: clamp(0.85rem, 4vw, 1.25rem);
+  }
+
+  .advisor-card {
+    padding:
+      clamp(1.25rem, 5vw, 1.6rem)
+      clamp(1.1rem, 5vw, 1.5rem)
+      clamp(1.15rem, 4.5vw, 1.45rem);
+  }
 }
 
 .person-card {
   position: relative;
   perspective: 920px;
-  min-height: clamp(380px, 58vw, 470px);
+  min-height: clamp(21rem, 36vw, 26rem);
+  min-width: 0;
   outline: none;
   transform-style: preserve-3d;
+  container-type: inline-size;
+  container-name: person;
 }
 
 .person-card:focus-visible {
@@ -863,7 +1009,8 @@ button {
 .person-card__inner {
   position: relative;
   width: 100%;
-  min-height: clamp(380px, 58vw, 470px);
+  height: 100%;
+  min-height: inherit;
   transform-style: preserve-3d;
   transition: none;
   will-change: auto;
@@ -884,90 +1031,84 @@ button {
     radial-gradient(120% 140% at 88% 4%, rgba(125, 211, 252, 0.18), transparent 55%);
   box-shadow: 0 16px 32px rgba(9, 44, 88, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.24);
   color: rgba(255, 255, 255, 0.92);
-  padding: clamp(1.3rem, 2.5vw, 1.7rem);
+  padding: var(--card-pad, clamp(1.15rem, 2.2vw, 1.6rem));
   display: grid;
   transition: none;
   will-change: auto;
+  overflow: hidden;
+  min-width: 0;
 }
 
-#eboard .person-card__face {
-  padding: clamp(1.2rem, 2.5vw, 1.65rem);
+#leadership .person-card__face--front {
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  align-content: stretch;
+  justify-items: center;
+  gap: var(--face-gap);
+  text-align: center;
 }
 
-#eboard .person-card__face--front {
-  align-content: center;
-}
-
-#eboard .person-card__flip {
+#leadership .person-card__flip {
   justify-self: center;
 }
 
-#eboard .person-card__face--back {
-  justify-items: start;
-  align-content: center;
+#leadership .person-card__face--back {
+  justify-items: stretch;
+  align-content: start;
   text-align: left;
-  overflow: visible;
+  gap: clamp(0.55rem, 1.2vw, 0.95rem);
+  padding-block: clamp(1.1rem, 2vw, 1.5rem);
+  overflow: auto;
 }
 
-#eboard .person-card__face--back .person-card__name {
+#leadership .person-card__face--back .person-card__name {
   justify-self: start;
   position: relative;
   z-index: 2;
-  font-size: clamp(0.82rem, 1.9vw, 1.4rem);
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
   max-width: 100%;
   white-space: normal;
-  overflow-wrap: break-word;
-  word-break: break-word;
+  overflow-wrap: anywhere;
   line-height: 1.25;
-  overflow: visible;
-  text-overflow: unset;
+  margin: 0;
 }
 
-#eboard .person-card__face--back .person-card__details {
-  justify-self: start;
+#leadership .person-card__face--back .person-card__details {
+  justify-self: stretch;
   max-width: 100%;
   min-width: 0;
   position: relative;
   z-index: 2;
+  gap: clamp(0.55rem, 1.1vw, 0.85rem);
+  flex: 1;
 }
 
-#eboard .person-card__face--back .person-card__details dt {
-  font-size: clamp(0.62rem, 1.6vw, 0.95rem);
+#leadership .person-card__face--back .person-card__details dt {
+  font-size: clamp(0.72rem, 1.1vw, 0.85rem);
 }
 
-#eboard .person-card__face--back .person-card__details dd {
-  font-size: clamp(0.68rem, 1.8vw, 1.05rem);
-  overflow-wrap: break-word;
-  word-break: break-word;
+#leadership .person-card__face--back .person-card__details dd {
+  font-size: clamp(0.88rem, 1.25vw, 1.02rem);
+  overflow-wrap: anywhere;
   white-space: normal;
-  overflow: visible;
-  text-overflow: unset;
-  display: block;
-  -webkit-line-clamp: unset;
+  line-height: 1.4;
 }
 
-#eboard .person-card__face--back .person-card__details {
-  gap: clamp(0.35rem, 1vw, 1rem);
-}
-
-#eboard .person-card__face--back .person-card__flip {
-  width: clamp(22px, 5vw, 42px);
-  height: clamp(22px, 5vw, 42px);
-  font-size: clamp(1rem, 2.4vw, 1.75rem);
-}
-
-#eboard .person-card__face--back {
-  gap: clamp(0.4rem, 1.2vw, 1.15rem);
+#leadership .person-card__face--back .person-card__flip {
+  width: var(--flip-size);
+  height: var(--flip-size);
+  font-size: calc(var(--flip-size) * 0.62);
+  justify-self: center;
+  margin-top: auto;
 }
 
 .person-card__face--front {
   z-index: 2;
   transform: none;
   opacity: 1;
-  grid-template-rows: auto auto auto 1fr auto;
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
   justify-items: center;
   text-align: center;
-  gap: clamp(0.7rem, 1.4vw, 1rem);
+  gap: clamp(0.55rem, 1.2vw, 0.9rem);
 }
 
 .person-card__face--front::before {
@@ -976,7 +1117,7 @@ button {
   top: 0;
   bottom: 0;
   left: 0;
-  width: 34px;
+  width: min(34px, 12%);
   border-radius: 28px 0 0 28px;
   pointer-events: none;
   background: linear-gradient(90deg, rgba(12, 50, 101, 0.22), rgba(12, 50, 101, 0));
@@ -1004,8 +1145,8 @@ button {
   transform: none;
   filter: none;
   pointer-events: none;
-  grid-template-rows: auto 1fr auto;
-  gap: clamp(0.9rem, 1.5vw, 1.15rem);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: clamp(0.7rem, 1.4vw, 1.05rem);
 }
 
 .person-card[data-flipped="true"] .person-card__face--front {
@@ -1032,11 +1173,13 @@ button {
 
 .person-card__avatar-wrap {
   position: relative;
-  width: clamp(132px, 22vw, 174px);
-  height: clamp(132px, 22vw, 174px);
+  z-index: 1;
+  width: var(--avatar-outer, clamp(7.5rem, 14vw, 10.5rem));
+  height: var(--avatar-outer, clamp(7.5rem, 14vw, 10.5rem));
   display: grid;
   place-items: center;
-  margin-top: 0.3rem;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
 }
 
 .person-card__avatar-ring {
@@ -1074,8 +1217,8 @@ button {
 }
 
 .person-card__avatar {
-  width: clamp(96px, 16vw, 128px);
-  height: clamp(96px, 16vw, 128px);
+  width: var(--avatar-inner, clamp(5.4rem, 10vw, 7.6rem));
+  height: var(--avatar-inner, clamp(5.4rem, 10vw, 7.6rem));
   border-radius: 50%;
   background: linear-gradient(155deg, #2f6cb2, #8ec5ff);
   display: grid;
@@ -1094,7 +1237,7 @@ button {
 }
 
 .person-card__avatar-fallback {
-  font-size: 2rem;
+  font-size: clamp(1.35rem, 3vw, 2rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #ffffff;
@@ -1104,46 +1247,63 @@ button {
 
 .person-card__name {
   margin: 0;
-  font-size: clamp(1.45rem, 2.2vw, 1.95rem);
+  font-size: var(--name-size, clamp(1.15rem, 2vw, 1.65rem));
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.02em;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+  position: relative;
+  z-index: 2;
 }
 
 .person-card__role {
   margin: 0;
-  font-size: 1.06rem;
+  font-size: var(--role-size, clamp(0.88rem, 1.3vw, 1.02rem));
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.86);
+  line-height: 1.35;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+  position: relative;
+  z-index: 2;
 }
 
 .person-card__links {
   margin-top: auto;
   display: inline-flex;
-  gap: 0.85rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.5rem, 1.2vw, 0.85rem);
+  position: relative;
+  z-index: 2;
 }
 
 .person-card__icon-link {
-  width: clamp(42px, 7.5vw, 52px);
-  height: clamp(42px, 7.5vw, 52px);
+  width: var(--icon-size, clamp(2.4rem, 4vw, 3rem));
+  height: var(--icon-size, clamp(2.4rem, 4vw, 3rem));
   border-radius: 12px;
   display: grid;
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.26);
   color: rgba(255, 255, 255, 0.95);
-  font-size: 1.5rem;
+  font-size: calc(var(--icon-size, 2.6rem) * 0.48);
   font-weight: 800;
   background: rgba(255, 255, 255, 0.08);
   transition: none;
+  flex: 0 0 auto;
 }
 
 .person-card__icon-link:hover {
   background: rgba(255, 255, 255, 0.15);
 }
 
-.person-card__icon-link--mail svg {
-  width: clamp(20px, 3.6vw, 24px);
-  height: clamp(20px, 3.6vw, 24px);
+.person-card__icon-link--mail svg,
+.person-card__icon-link--web svg {
+  width: calc(var(--icon-size, 2.6rem) * 0.46);
+  height: calc(var(--icon-size, 2.6rem) * 0.46);
   fill: none;
   stroke: currentColor;
   stroke-width: 1.8;
@@ -1156,16 +1316,18 @@ button {
   border: 1px solid transparent;
   background: transparent;
   color: rgba(255, 255, 255, 0.9);
-  font-size: clamp(1.8rem, 4.2vw, 2.3rem);
+  font-size: calc(var(--flip-size, 2.4rem) * 0.72);
   line-height: 1;
   cursor: pointer;
-  justify-self: end;
-  width: clamp(38px, 6.8vw, 44px);
-  height: clamp(38px, 6.8vw, 44px);
+  justify-self: center;
+  width: var(--flip-size, clamp(2.1rem, 4vw, 2.6rem));
+  height: var(--flip-size, clamp(2.1rem, 4vw, 2.6rem));
   border-radius: 999px;
   display: grid;
   place-items: center;
   padding: 0;
+  position: relative;
+  z-index: 2;
   transition: transform 180ms var(--ease), background 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
 }
 
@@ -1482,6 +1644,29 @@ button {
   align-items: center;
   gap: clamp(0.6rem, 1.5vw, 1rem);
   margin-top: 0.25rem;
+}
+
+.section-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1.4rem, 3vw, 2rem);
+}
+
+.feedback-quotes__empty {
+  text-align: center;
+  padding: clamp(1.4rem, 3vw, 2.2rem) clamp(1rem, 2vw, 1.5rem);
+  border-radius: var(--radius-lg);
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 1rem;
+}
+
+.feedback-quotes__empty p {
+  margin: 0;
+  line-height: 1.55;
+  max-width: 42ch;
+  margin-inline: auto;
 }
 
 /* Carousel (used elsewhere if needed) */
@@ -2078,7 +2263,7 @@ button {
   }
 
   #mission .card-grid,
-  #involved .card-grid {
+  #collaborate .card-grid {
     padding-inline: clamp(1rem, 4vw, 2rem);
     gap: clamp(1.5rem, 3vw, 2.5rem);
   }
@@ -2199,105 +2384,22 @@ button {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .people-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 
-  #eboard .people-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    align-items: stretch;
-    padding-inline: clamp(1rem, 4vw, 2rem);
-    gap: clamp(1.5rem, 3vw, 2.5rem);
-  }
 
-  #eboard .person-card {
-    min-height: 0;
-    min-width: 0;
-    align-self: stretch;
-    overflow: visible;
-  }
 
-  #eboard .person-card__inner {
-    min-height: 0;
-    min-width: 0;
-    height: 100%;
-    overflow: visible;
-  }
 
-  #eboard .person-card__face {
-    min-width: 0;
-    padding: clamp(1.2rem, 2.5vw, 1.65rem);
-  }
 
-  #eboard .person-card__face--front {
-    overflow: hidden;
-    position: relative;
-    inset: auto;
-    height: 100%;
-    grid-template-rows: auto auto auto minmax(0, 1fr) auto;
-    justify-items: center;
-    align-content: center;
-    gap: clamp(0.45rem, 1.2vw, 0.75rem);
-  }
 
-  #eboard .person-card__face--front::before {
-    width: 0;
-  }
 
-  #eboard .person-card__face--back {
-    position: absolute;
-    inset: 0;
-    overflow: visible;
-  }
 
-  #eboard .person-card__face--front .person-card__flip {
-    justify-self: center;
-  }
 
-  #eboard .person-card__avatar-wrap {
-    width: clamp(88px, 18vw, 140px);
-    height: clamp(88px, 18vw, 140px);
-  }
 
-  #eboard .person-card__avatar {
-    width: clamp(64px, 13vw, 100px);
-    height: clamp(64px, 13vw, 100px);
-  }
 
-  #eboard .person-card__avatar-fallback {
-    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-  }
 
-  #eboard .person-card__face--front .person-card__name {
-    font-size: clamp(1.05rem, 2.2vw, 1.5rem);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-  }
 
-  #eboard .person-card__face--front .person-card__role {
-    font-size: clamp(0.82rem, 1.8vw, 0.98rem);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-  }
 
-  #eboard .person-card__icon-link {
-    width: clamp(36px, 7vw, 46px);
-    height: clamp(36px, 7vw, 46px);
-    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
-  }
 
-  #eboard .person-card__icon-link--mail svg {
-    width: clamp(16px, 3.2vw, 22px);
-    height: clamp(16px, 3.2vw, 22px);
-  }
 
-  #eboard .person-card__face--front .person-card__flip {
-    width: clamp(32px, 6.5vw, 42px);
-    height: clamp(32px, 6.5vw, 42px);
-    font-size: clamp(1.35rem, 3vw, 1.75rem);
-  }
 
   .steps {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2326,79 +2428,14 @@ button {
   }
 }
 
-@media (max-width: 910px) {
-  #eboard .person-card__face {
-    padding: clamp(1.2rem, 2.5vw, 1.65rem);
-  }
 
-  #eboard .person-card__face--front {
-    justify-items: center;
-    align-content: center;
-    gap: clamp(0.35rem, 1vw, 0.55rem);
-  }
-
-  #eboard .person-card__flip {
-    justify-self: center;
-  }
-
-  #eboard .person-card__avatar-wrap {
-    width: clamp(56px, 12vw, 88px);
-    height: clamp(56px, 12vw, 88px);
-  }
-
-  #eboard .person-card__avatar {
-    width: clamp(40px, 8.5vw, 62px);
-    height: clamp(40px, 8.5vw, 62px);
-  }
-
-  #eboard .person-card__avatar-fallback {
-    font-size: clamp(0.85rem, 1.8vw, 1.05rem);
-  }
-
-  #eboard .person-card__face--front .person-card__name {
-    font-size: clamp(0.8rem, 1.7vw, 1.08rem);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-
-  #eboard .person-card__face--front .person-card__role {
-    font-size: clamp(0.65rem, 1.4vw, 0.78rem);
-    white-space: nowrap;
-  }
-
-  #eboard .person-card__icon-link {
-    width: clamp(24px, 5vw, 32px);
-    height: clamp(24px, 5vw, 32px);
-    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-  }
-
-  #eboard .person-card__icon-link--mail svg {
-    width: clamp(11px, 2.2vw, 14px);
-    height: clamp(11px, 2.2vw, 14px);
-  }
-
-  #eboard .person-card__face--front .person-card__flip {
-    width: clamp(22px, 5vw, 30px);
-    height: clamp(22px, 5vw, 30px);
-    font-size: clamp(1rem, 2.2vw, 1.25rem);
-  }
-
-  #eboard .person-card__face--back {
-    align-content: start;
-    padding-block-start: clamp(1.2rem, 4vw, 2rem);
-  }
-}
 
 @media (max-width: 768px) {
   #mission .card-grid,
-  #involved .card-grid {
+  #collaborate .card-grid {
     grid-template-columns: 1fr;
   }
 
-  #eboard .people-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 
   #feedback .carousel__track .quote-card,
   #feedback .feedback-quotes__track .quote-card {
@@ -2423,6 +2460,10 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .advisors-grid {
+    grid-template-columns: 1fr;
+  }
+
   .metrics .metric:first-child {
     grid-column: auto;
   }
@@ -2431,9 +2472,6 @@ button {
     font-size: 0.98rem;
   }
 
-  #eboard .people-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 
   .footer__inner {
     gap: 0.55rem;
@@ -2556,147 +2594,116 @@ button {
   }
 }
 
-@media (max-width: 600px) {
-  #eboard .people-grid {
-    align-items: stretch;
+/* Leadership responsive layout */
+@media (max-width: 1200px) {
+  #leadership .people-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.1rem, 2.4vw, 1.75rem);
+    max-width: 44rem;
+    margin-inline: auto;
+    padding-inline: clamp(0.75rem, 3vw, 1.25rem);
+    --card-pad: clamp(1.15rem, 2.8vw, 1.55rem);
+    --avatar-outer: clamp(7.25rem, 22vw, 9.5rem);
+    --avatar-inner: clamp(5.25rem, 16vw, 6.9rem);
+    --name-size: clamp(1.15rem, 3.4vw, 1.45rem);
+    --role-size: clamp(0.9rem, 2.6vw, 1.05rem);
+    --icon-size: clamp(2.5rem, 7vw, 2.9rem);
+    --flip-size: clamp(2.2rem, 6vw, 2.6rem);
+    --face-gap: clamp(0.5rem, 1.6vw, 0.8rem);
   }
 
-  #eboard .person-card {
-    min-height: 0;
-    align-self: stretch;
-  }
-
-  #eboard .person-card__inner {
-    min-height: 0;
-    height: 100%;
-  }
-
-  #eboard .person-card__face--front {
-    position: relative;
-    inset: auto;
-    height: 100%;
-    grid-template-rows: auto minmax(2em, auto) minmax(1.2em, auto) minmax(0, 1fr) auto;
-  }
-
-  #eboard .person-card__face--back {
-    position: absolute;
-    inset: 0;
-  }
-
-  #eboard .person-card__avatar-wrap {
-    overflow: hidden;
-  }
-
-  #eboard .person-card__face--front .person-card__name,
-  #eboard .person-card__face--front .person-card__role {
-    position: relative;
-    z-index: 2;
-    align-self: start;
+  #leadership .person-card {
+    min-height: clamp(23rem, 58vw, 28rem);
   }
 }
 
-@media (max-width: 503px) {
-  #eboard .person-card__face {
-    padding: clamp(1.2rem, 2.5vw, 1.65rem);
-    overflow: visible;
+@media (max-width: 560px) {
+  #leadership .people-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 22rem;
+    gap: 1.15rem;
+    padding-inline: clamp(0.85rem, 4vw, 1.15rem);
+    --card-pad: 1.25rem;
+    --avatar-outer: 8.5rem;
+    --avatar-inner: 6.15rem;
+    --name-size: 1.35rem;
+    --role-size: 0.98rem;
+    --icon-size: 2.75rem;
+    --flip-size: 2.45rem;
+    --face-gap: 0.7rem;
   }
 
-  #eboard .person-card__face--front::before {
-    width: 0;
+  #leadership .person-card {
+    min-height: 24.5rem;
   }
 
-  #eboard .person-card__face--front {
-    grid-template-rows: auto minmax(2em, auto) minmax(1.2em, auto) minmax(0, 1fr) auto;
-    justify-items: center;
-    align-content: center;
-    gap: clamp(0.5rem, 2.5vw, 0.85rem);
-    isolation: isolate;
+  #leadership .person-card__face--back .person-card__name {
+    font-size: 1.2rem;
   }
 
-  #eboard .person-card__flip {
-    justify-self: center;
+  #leadership .person-card__face--back .person-card__details dt {
+    font-size: 0.78rem;
   }
 
-  #eboard .person-card__face--front::before,
-  #eboard .person-card__face--front::after {
-    z-index: 0;
+  #leadership .person-card__face--back .person-card__details dd {
+    font-size: 0.98rem;
+  }
+}
+
+/* Scale card internals to available card width */
+@container person (max-width: 240px) {
+  .person-card__avatar-wrap {
+    width: 5.6rem;
+    height: 5.6rem;
   }
 
-  #eboard .person-card__avatar-wrap {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
+  .person-card__avatar {
+    width: 4rem;
+    height: 4rem;
   }
 
-  #eboard .person-card__face--front .person-card__name,
-  #eboard .person-card__face--front .person-card__role {
-    position: relative;
-    z-index: 2;
-    align-self: start;
+  .person-card__name {
+    font-size: 0.98rem;
   }
 
-  #eboard .person-card__avatar-wrap {
-    width: clamp(72px, 22vw, 112px);
-    height: clamp(72px, 22vw, 112px);
+  .person-card__role {
+    font-size: 0.78rem;
   }
 
-  #eboard .person-card__avatar {
-    width: clamp(50px, 15vw, 80px);
-    height: clamp(50px, 15vw, 80px);
+  .person-card__icon-link {
+    width: 2.05rem;
+    height: 2.05rem;
+    font-size: 0.95rem;
   }
 
-  #eboard .person-card__avatar-fallback {
-    font-size: clamp(1.1rem, 4.2vw, 1.5rem);
+  .person-card__flip {
+    width: 1.85rem;
+    height: 1.85rem;
+    font-size: 1.15rem;
   }
 
-  #eboard .person-card__face--front .person-card__name {
-    font-size: clamp(1rem, 5vw, 1.4rem);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    max-width: 100%;
-    line-height: 1.2;
+  .person-card__face {
+    padding: 0.9rem;
+  }
+}
+
+@container person (min-width: 241px) and (max-width: 300px) {
+  .person-card__avatar-wrap {
+    width: 6.5rem;
+    height: 6.5rem;
   }
 
-  #eboard .person-card__face--front .person-card__role {
-    font-size: clamp(0.7rem, 3.2vw, 0.95rem);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 100%;
-    line-height: 1.25;
+  .person-card__avatar {
+    width: 4.7rem;
+    height: 4.7rem;
   }
 
-  #eboard .person-card__links {
-    gap: clamp(0.45rem, 2.2vw, 0.75rem);
-    position: relative;
-    z-index: 2;
+  .person-card__name {
+    font-size: 1.08rem;
   }
 
-  #eboard .person-card__face--front .person-card__flip {
-    position: relative;
-    z-index: 2;
-    width: clamp(28px, 7.5vw, 38px);
-    height: clamp(28px, 7.5vw, 38px);
-    font-size: clamp(1.2rem, 4.5vw, 1.65rem);
-  }
-
-  #eboard .person-card__icon-link {
-    width: clamp(32px, 11vw, 44px);
-    height: clamp(32px, 11vw, 44px);
-    font-size: clamp(1.1rem, 4.2vw, 1.4rem);
-  }
-
-  #eboard .person-card__icon-link--mail svg {
-    width: clamp(14px, 5vw, 20px);
-    height: clamp(14px, 5vw, 20px);
-  }
-
-  #eboard .people-grid {
-    padding-inline: clamp(0.75rem, 3vw, 1rem);
-    gap: clamp(1rem, 2.5vw, 1.4rem);
+  .person-card__role {
+    font-size: 0.84rem;
   }
 }
 
@@ -2755,6 +2762,8 @@ button {
   .icon-pill,
   .faq-item,
   .partner-card,
+  .advisor-card,
+  .advisor-card__icon,
   .person-card__inner,
   .person-card__face,
   .person-card__icon-link,

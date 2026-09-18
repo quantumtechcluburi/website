@@ -1,5 +1,6 @@
 const SITE = {
-  clubName: "Quantum Tech Club",
+  clubName: "Quantum Technologies Club",
+  shortName: "QTC@URI",
   numbers: {
     members: 60,
     membersBig: 60,
@@ -10,91 +11,75 @@ const SITE = {
   links: {
     email: "quantumtechcluburi@gmail.com",
     instagram: "https://www.instagram.com/quantumtechclub.uri/",
+    uriPage: "https://web.uri.edu/engineering/quantum-technologies-club/",
     interestForm:
-      "https://docs.google.com/forms/d/e/1FAIpQLSftxDyaVzKB_nCT88hQTJkKmbJ-tHtZYNhCINDfICO9A8xuGg/viewform?usp=header",
+      "https://docs.google.com/forms/d/e/1FAIpQLSdcFnzuwwuJMQlfOAs_qJxDN5FdKwRQMDTtZ8ulkYRlIueIpg/viewform?usp=header",
     feedbackForm:
       "https://docs.google.com/forms/d/e/1FAIpQLSdv2BLMbgFet0sQyglNOvpgxpHw0gePP94R7OScP9gAvMetkQ/viewform?usp=publish-editor",
+    // Collaboration ideas (talks, workshops, opportunities, newsletter).
+    collaborateForm:
+      "https://docs.google.com/forms/d/e/1FAIpQLSdnTds0ULRDo8tC5GdcmsoSwXozxJIemowaWneJm-UgpPdnHw/viewform?usp=publish-editor",
+    // Live feed from Google Apps Script (see docs/FEEDBACK_AUTOMATION.md).
+    // Paste your web app /exec URL here after deploying the feedback feed script.
+    feedbackFeed: "https://script.google.com/macros/s/AKfycbzYLW1KOj7vGyyPANmMHybe-K0GcY6TXQltFm0V_tYED70A82grGP8muuaP1DGyk5D-bw/exec",
   },
   nextEvent: {
-    title: "Welcome to the Quantum Tech Club @The University of Rhode Island",
-    datetime: "2026-03-11T18:00:00-04:00",
+    title: "Next meeting TBD",
+    datetime: "",
     location: "Location TBD",
   },
 };
+
+const collaborateIdeaHref = () =>
+  SITE.links.collaborateForm?.trim() ||
+  `mailto:${SITE.links.email}?subject=QTC%40URI%20Collaboration%20Idea`;
 
 const MODALS = {
   mission: {
     title: "Mission",
     body: () => `
-      <p><strong>${SITE.clubName}</strong> exists to make quantum technologies approachable for students at URI.</p>
-      <h4>What we do</h4>
-      <ul>
-        <li><strong>Meetings</strong>: short talks + group discussion that start from fundamentals.</li>
-        <li><strong>Workshops</strong>: hands-on sessions where we build or explore something together.</li>
-        <li><strong>Projects</strong>: small teams that ship demos, experiments, and tutorials.</li>
-      </ul>
+      <p><strong>${SITE.clubName}</strong> (${SITE.shortName}) at the University of Rhode Island brings together people who are curious about the rapidly evolving quantum field.</p>
+      <p>We promote interdisciplinary learning, collaboration, professional growth, and greater awareness of how quantum technologies may shape science, business, and society.</p>
+      <h4>Motto</h4>
+      <p>One Technology. Every Industry. Infinite Impact.</p>
       <h4>When we meet</h4>
-      <p>We’ll plug in the exact day, time, and room here (for now, think “weekly meeting on campus”).</p>
-      <h4>Who it’s for</h4>
-      <p>Anyone who’s curious about quantum technologies. If you’re new, we’ll help you ramp up. If you’re experienced, you’ll find peers to build and research with.</p>
+      <p>Regular meetings are held during the academic semester. Meeting frequency, format, and scheduling are determined by the Executive Board and communicated to members in advance.</p>
       <div class="modal-actions">
-        <a class="button button--primary" href="#involved" data-modal-close>How to join</a>
+        <a class="button button--primary" href="${SITE.links.interestForm}" target="_blank" rel="noreferrer">Join Club</a>
         <button class="button button--ghost" data-open-modal="contact">Contact / links</button>
       </div>
     `,
   },
-  events: {
-    title: "Give a talk",
-    body: () => `
-      <p>We host guest speakers throughout the semester. Whether you're a professor, researcher, industry professional, or fellow student — we'd love to hear from you.</p>
-      <h4>What makes a great talk</h4>
-      <ul>
-        <li><strong>10–20 minutes</strong>: focused topic with room for Q&A</li>
-        <li><strong>Beginner-accessible</strong>: define key terms as you go</li>
-        <li><strong>Interactive</strong>: demos, live coding, or audience questions welcome</li>
-      </ul>
-      <h4>How to get on the schedule</h4>
-      <p>Send a short abstract and your preferred date(s) to an E-Board member or reach out below.</p>
-      <div class="modal-actions">
-        <button class="button button--ghost" data-open-modal="contact">Contact us</button>
-      </div>
-    `,
-  },
   how: {
-    title: "How to get involved (checklist)",
+    title: "Join as a member",
     body: () => `
-      <h4>Fast path</h4>
+      <h4>Fast path for students</h4>
       <ul>
+        <li>Fill out the interest form.</li>
         <li>Show up to a meeting (no prep required).</li>
-        <li>Introduce yourself to an officer or a returning member.</li>
-        <li>Pick one: join a project, attend workshops, or just hang out and learn.</li>
+        <li>Come back, learn, and contribute at your pace.</li>
       </ul>
-      <h4>What to expect your first time</h4>
+      <h4>Grow with the club</h4>
       <ul>
-        <li>Beginner-safe explanations (we define terms as we go).</li>
-        <li>Optional group activities (you can observe if you want).</li>
-        <li>People who will help you find your footing.</li>
+        <li>Develop leadership, communication, teamwork, project-management, and event-planning skills.</li>
+        <li>Become eligible for Active Member recognition and future Executive Board service.</li>
       </ul>
+      <p>Faculty, researchers, and industry partners looking to speak, host a workshop, or share opportunities should use the Collaborate section.</p>
       <div class="modal-actions">
         <a class="button button--primary" href="${SITE.links.interestForm}" target="_blank" rel="noreferrer">Interest form</a>
-        <button class="button button--ghost" data-open-modal="contact">Discord / socials</button>
+        <button class="button button--ghost" data-open-modal="contact">Contact / socials</button>
       </div>
     `,
   },
   resources: {
-    title: "Resources & links",
+    title: "Resources",
     body: () => `
-      <p>Key links for staying in touch with ${SITE.clubName} and exploring quantum tech.</p>
       <h4>Club links</h4>
       <ul>
         <li><strong>Email</strong>: <a href="mailto:${SITE.links.email}">${SITE.links.email}</a></li>
-        <li><strong>Instagram</strong>: <a href="${SITE.links.instagram}" target="_blank" rel="noreferrer">${SITE.links.instagram}</a></li>
-      </ul>
-      <h4>Starter learning list</h4>
-      <ul>
-        <li>One beginner-friendly video/playlist you recommend</li>
-        <li>A reading list (1–3 links max)</li>
-        <li>A “first project” idea</li>
+        <li><strong>Instagram</strong>: <a href="${SITE.links.instagram}" target="_blank" rel="noreferrer">@quantumtechclub.uri</a></li>
+        <li><strong>URI page</strong>: <a href="${SITE.links.uriPage}" target="_blank" rel="noreferrer">Quantum Technologies Club</a></li>
+        <li><strong>Interest form</strong>: <a href="${SITE.links.interestForm}" target="_blank" rel="noreferrer">Join the club</a></li>
       </ul>
     `,
   },
@@ -102,128 +87,51 @@ const MODALS = {
     title: "FAQ",
     body: () => `
       <h4>Do I need experience?</h4>
-      <p>No. We’re designed to be friendly to first-timers.</p>
-      <h4>What should I bring?</h4>
-      <p>Just yourself. A laptop helps for workshops, but it’s not always required.</p>
-      <h4>What if I can’t attend every week?</h4>
-      <p>That’s fine—come when you can. Projects have flexible roles.</p>
+      <p>No. We are designed to be friendly to first-timers.</p>
+      <h4>Who can join?</h4>
+      <p>Quantum Technologies Club is open to all University of Rhode Island students, faculty, and staff, regardless of major, academic level, or prior experience.</p>
+      <p>Students, faculty, and staff from other institutions, as well as alumni, industry professionals, and members of the public, may participate in eligible online activities and events.</p>
+      <ul>
+        <li><strong>No gatekeeping:</strong> we explain jargon and define terms.</li>
+        <li><strong>Interdisciplinary:</strong> engineering, CS, physics, math, chemistry, business, and more.</li>
+        <li><strong>Skill growth:</strong> leadership, communication, teamwork, and event planning.</li>
+      </ul>
+      <h4>What if I cannot attend every week?</h4>
+      <p>That is fine. Come when you can. Projects and roles stay flexible.</p>
     `,
   },
   culture: {
-    title: "Club culture",
+    title: "Who can join",
     body: () => `
-      <p>We aim for an environment where people can ask questions without fear.</p>
+      <p>${SITE.clubName} is open to all University of Rhode Island students, faculty, and staff, regardless of major, academic level, or prior experience.</p>
+      <p>Students, faculty, and staff from other institutions, as well as alumni, industry professionals, and members of the public, may participate in eligible online activities and events.</p>
       <ul>
         <li><strong>No gatekeeping</strong>: we explain jargon and define terms.</li>
-        <li><strong>Participation options</strong>: talk, pair, observe, or contribute asynchronously.</li>
-        <li><strong>Kind feedback</strong>: we focus on improvement, not ego.</li>
+        <li><strong>Interdisciplinary</strong>: engineering, CS, physics, math, chemistry, business, and more.</li>
+        <li><strong>Skill growth</strong>: leadership, communication, teamwork, and event planning.</li>
       </ul>
     `,
   },
   projects: {
-    title: "What we build",
+    title: "What we do",
     body: () => `
-      <p>Pick a track and ship something tangible. Replace these with your real project ideas.</p>
-      <h4>Example tracks</h4>
+      <p>Designed to make quantum technologies accessible to all students. Club programming may include:</p>
       <ul>
-        <li><strong>Workshop builds</strong>: small demos you finish in one meeting</li>
-        <li><strong>Semester projects</strong>: team projects with roles (dev, design, research, docs)</li>
-        <li><strong>Speaker series</strong>: short talks from members and guests</li>
+        <li><strong>Education</strong>: workshops and technical demonstrations</li>
+        <li><strong>Projects</strong>: hands-on quantum computing experience and demos</li>
+        <li><strong>Community</strong>: interdisciplinary meetings and networking</li>
+        <li><strong>Speakers</strong>: guest lectures from academia and industry</li>
+        <li><strong>Competitions</strong>: hackathons, conferences, and programming challenges</li>
       </ul>
+      <p>Specific programs and opportunities may vary by semester based on member interest, available resources, and partnerships.</p>
     `,
   },
-  workshop: {
-    title: "Teach a workshop",
+  collaborateIdea: {
+    title: "Submit Idea",
     body: () => `
-      <p>Run a hands-on session where attendees build, code, or experiment alongside you.</p>
-      <h4>Workshop format</h4>
-      <ul>
-        <li><strong>30–60 minutes</strong>: guided walkthrough with exercises</li>
-        <li><strong>Bring materials</strong>: slides, starter code, or a shared notebook</li>
-        <li><strong>Any level</strong>: let us know the target audience (beginner, intermediate, or advanced)</li>
-      </ul>
-      <h4>Topics we're looking for</h4>
-      <ul>
-        <li>Quantum programming frameworks (Qiskit, Cirq, PennyLane)</li>
-        <li>Quantum algorithms and simulations</li>
-        <li>Hardware, sensing, or communication concepts</li>
-        <li>Career skills: research methods, technical writing, poster design</li>
-      </ul>
+      <p>Tell us how you want to collaborate with ${SITE.shortName}: give a talk, host a workshop, share an opportunity, or contribute to the newsletter.</p>
       <div class="modal-actions">
-        <button class="button button--ghost" data-open-modal="contact">Propose a workshop</button>
-      </div>
-    `,
-  },
-  careers: {
-    title: "Career opportunities",
-    body: () => `
-      <p>Connect URI students with real opportunities in quantum tech and related fields.</p>
-      <h4>What you can share</h4>
-      <ul>
-        <li><strong>Internships</strong>: summer or semester-long positions</li>
-        <li><strong>Research roles</strong>: lab assistants, undergraduate researchers</li>
-        <li><strong>Industry jobs</strong>: entry-level or early-career openings</li>
-        <li><strong>Fellowships & programs</strong>: quantum-focused cohorts or funding</li>
-      </ul>
-      <h4>How to post</h4>
-      <p>Send us a link or description and we'll share it with our members through meetings and our channels.</p>
-      <div class="modal-actions">
-        <button class="button button--ghost" data-open-modal="contact">Share a listing</button>
-      </div>
-    `,
-  },
-  newsletter: {
-    title: "Contribute to the newsletter",
-    body: () => `
-      <p>We want everyone’s ideas on what to feature next.</p>
-      <h4>Good submission ideas</h4>
-      <ul>
-        <li>Interesting internships or job postings</li>
-        <li>Recent advances from academia or industry (short summaries only)</li>
-        <li>Useful learning resources: tutorials, videos, papers, tools</li>
-        <li>Project highlights, club wins, and hackathon opportunities</li>
-      </ul>
-      <h4>Submission format</h4>
-      <ul>
-        <li>Title + 2–4 sentence blurb</li>
-        <li>Optional link(s) for readers to explore</li>
-        <li>Your name and preferred display credit (or anonymous)</li>
-      </ul>
-      <div class="modal-actions">
-        <a class="button button--primary" href="mailto:${SITE.links.email}?subject=Quantum%20Tech%20Club%20Newsletter%20Submission" rel="noreferrer">Email your idea</a>
-        <button class="button button--ghost" data-open-modal="contact">Contact the team</button>
-      </div>
-    `,
-  },
-  members: {
-    title: "Member count",
-    body: () => `
-      <p>Right now this site uses placeholder numbers. Tell me your real count and we’ll update the counters instantly.</p>
-      <h4>Common ways clubs count</h4>
-      <ul>
-        <li>Active in the last 30–60 days</li>
-        <li>Attended at least one meeting this semester</li>
-        <li>Signed up for the mailing list (usually larger)</li>
-      </ul>
-    `,
-  },
-  impact: {
-    title: "Club impact",
-    body: () => `
-      <p>Add outcomes that matter to your club. A few ideas:</p>
-      <ul>
-        <li>Members who joined research / internships</li>
-        <li>Projects showcased at a fair</li>
-        <li>Cross-club collaborations</li>
-      </ul>
-    `,
-  },
-  testimonials: {
-    title: "Submit Feedback",
-    body: () => `
-      <p>For now, we are collecting feedback via the form link below.</p>
-      <div class="modal-actions">
-        <a class="button button--primary" href="${SITE.links.feedbackForm}" target="_blank" rel="noreferrer">Form</a>
+        <a class="button button--primary" href="${collaborateIdeaHref()}" target="_blank" rel="noreferrer">Open form</a>
         <button class="button button--ghost" data-modal-close>Close</button>
       </div>
     `,
@@ -231,46 +139,16 @@ const MODALS = {
   contact: {
     title: "Contact",
     body: () => `
-      <strong>Reach out to the Quantum Tech Club team at The University of Rhode Island.</strong>
+      <strong>Reach out to ${SITE.shortName} at the University of Rhode Island.</strong>
       <ul>
         <li><strong>Email</strong>: <a href="mailto:${SITE.links.email}">${SITE.links.email}</a></li>
         <li><strong>Instagram</strong>: <a href="${SITE.links.instagram}" target="_blank" rel="noreferrer">${SITE.links.instagram}</a></li>
+        <li><strong>URI page</strong>: <a href="${SITE.links.uriPage}" target="_blank" rel="noreferrer">Quantum Technologies Club</a></li>
       </ul>
       <div class="modal-actions">
         <a class="button button--primary" href="${SITE.links.interestForm}" target="_blank" rel="noreferrer">Join Club</a>
         <button class="button button--ghost" data-modal-close>Close</button>
       </div>
-    `,
-  },
-  "eboard-president": {
-    title: "President",
-    body: () => `
-      <p><strong>Name</strong>: TBD</p>
-      <p><strong>Focus</strong>: setting vision, partnerships, and making sure the club feels welcoming.</p>
-      <p class="muted">Send me the name, pronouns (optional), major/year, and 2–3 sentence bio to replace this.</p>
-    `,
-  },
-  "eboard-vp": {
-    title: "Vice President",
-    body: () => `
-      <p><strong>Name</strong>: TBD</p>
-      <p><strong>Focus</strong>: logistics, planning, and keeping projects moving.</p>
-      <p class="muted">We can also add office hours or a “how to reach me” line.</p>
-    `,
-  },
-  "eboard-treasurer": {
-    title: "Treasurer",
-    body: () => `
-      <p><strong>Name</strong>: TBD</p>
-      <p><strong>Focus</strong>: funding, budgets, and making resources accessible.</p>
-      <p class="muted">If you have sponsors or funding goals, we can add them here.</p>
-    `,
-  },
-  "eboard-secretary": {
-    title: "Secretary",
-    body: () => `
-      <p><strong>Name</strong>: TBD</p>
-      <p><strong>Focus</strong>: notes, announcements, and keeping everyone in the loop.</p>
     `,
   },
 };
@@ -607,10 +485,44 @@ function initCountups() {
   els.forEach((el) => io.observe(el));
 }
 
-/* Next meeting countdown */
-function initCountdown() {
+/* Next meeting countdown: loads from data/meetings.json */
+async function loadNextMeeting() {
+  try {
+    const res = await fetch("./data/meetings.json", { cache: "no-store" });
+    if (!res.ok) throw new Error(`meetings.json ${res.status}`);
+    const data = await res.json();
+    const meetings = Array.isArray(data?.meetings) ? data.meetings : [];
+    const now = Date.now();
+    const upcoming = meetings
+      .map((m) => ({ ...m, _ts: new Date(m.datetime).getTime() }))
+      .filter((m) => !Number.isNaN(m._ts))
+      .sort((a, b) => a._ts - b._ts);
+
+    const next = upcoming.find((m) => m._ts >= now - 60 * 60 * 1000) || null;
+    if (next) {
+      SITE.nextEvent = {
+        title: next.title || "Club meeting",
+        datetime: next.datetime,
+        location: next.location || "Location TBD",
+      };
+      return SITE.nextEvent;
+    }
+
+    SITE.nextEvent = {
+      title: "Fall 2026 meetings coming soon",
+      datetime: "",
+      location: "The E-Board will share dates once member availability is collected.",
+    };
+    return SITE.nextEvent;
+  } catch (err) {
+    console.warn("Could not load meetings.json", err);
+    return SITE.nextEvent;
+  }
+}
+
+function initCountdown(eventConfig = SITE.nextEvent) {
   const root = document.querySelector("[data-next-event]");
-  if (!root || !SITE.nextEvent || !SITE.nextEvent.datetime) return;
+  if (!root) return;
 
   const titleEl = root.querySelector("[data-next-title]");
   const metaEl = root.querySelector("[data-next-meta]");
@@ -621,10 +533,20 @@ function initCountdown() {
     seconds: root.querySelector('[data-countdown-part="seconds"]'),
   };
 
-  const eventDate = new Date(SITE.nextEvent.datetime);
+  const event = eventConfig || SITE.nextEvent;
+  if (titleEl) titleEl.textContent = event.title || "Next meeting";
+
+  if (!event.datetime) {
+    if (metaEl) metaEl.textContent = event.location || "Details coming soon.";
+    Object.values(parts).forEach((el) => {
+      if (el) el.textContent = "--";
+    });
+    return;
+  }
+
+  const eventDate = new Date(event.datetime);
   if (Number.isNaN(eventDate.getTime())) return;
 
-  if (titleEl) titleEl.textContent = SITE.nextEvent.title;
   if (metaEl) {
     const dateStr = eventDate.toLocaleString(undefined, {
       weekday: "short",
@@ -633,7 +555,7 @@ function initCountdown() {
       hour: "numeric",
       minute: "2-digit",
     });
-    metaEl.textContent = `${dateStr} • ${SITE.nextEvent.location}`;
+    metaEl.textContent = `${dateStr} • ${event.location || "Location TBD"}`;
   }
 
   function fitTextToLines(el, minSizePx = 10) {
@@ -804,45 +726,130 @@ function initSectionScrollMotion() {
   queueRender();
 }
 
-/* E-board equal height: tallest card rules all */
+/* Leadership equal height: tallest card in each row rules all */
 function initEboardEqualHeights() {
-  const section = document.getElementById("eboard");
+  const section = document.getElementById("leadership");
   const grid = section?.querySelector(".people-grid");
-  const cards = grid?.querySelectorAll(".person-card") || [];
+  const cards = [...(grid?.querySelectorAll(".person-card") || [])];
   if (!cards.length) return;
 
   const applyEqualHeights = () => {
-    const useEqualHeight = window.matchMedia("(max-width: 980px)").matches;
     cards.forEach((c) => {
       c.style.minHeight = "";
     });
-    if (!useEqualHeight) return;
-    let max = 0;
-    cards.forEach((card) => {
-      const h = card.offsetHeight;
-      if (h > max) max = h;
-    });
-    if (max > 0) {
-      cards.forEach((card) => {
-        card.style.minHeight = max + "px";
+
+    // Let CSS min-height drive single-column; equalize within rows for multi-col.
+    const cols = getComputedStyle(grid).gridTemplateColumns.split(" ").filter(Boolean).length;
+    if (cols <= 1) return;
+
+    for (let i = 0; i < cards.length; i += cols) {
+      const row = cards.slice(i, i + cols);
+      let max = 0;
+      row.forEach((card) => {
+        max = Math.max(max, card.offsetHeight);
       });
+      if (max > 0) {
+        row.forEach((card) => {
+          card.style.minHeight = `${max}px`;
+        });
+      }
     }
   };
 
   applyEqualHeights();
   window.addEventListener("load", applyEqualHeights);
   window.addEventListener("resize", () => {
-    clearTimeout(window._eboardEqualHeightT);
-    window._eboardEqualHeightT = setTimeout(applyEqualHeights, 50);
+    clearTimeout(window._leadershipEqualHeightT);
+    window._leadershipEqualHeightT = setTimeout(applyEqualHeights, 80);
   });
 }
 
-function initFeedbackLoop() {
-  const track = document.querySelector(".feedback-quotes__track");
-  if (!track) return;
+async function loadFeedbackQuotes() {
+  const localUrl = "./data/feedback.json";
+  const remoteUrl = SITE.links.feedbackFeed?.trim();
+
+  const parseQuotes = (data) => {
+    const quotes = Array.isArray(data?.quotes) ? data.quotes : Array.isArray(data) ? data : [];
+    return quotes
+      .map((q) => ({
+        quote: String(q.quote || q.text || "").trim(),
+        meta: String(q.meta || q.attribution || q.name || "").trim(),
+      }))
+      .filter((q) => q.quote);
+  };
+
+  const fetchQuotes = async (url) => {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error(`feedback ${res.status}`);
+    return parseQuotes(await res.json());
+  };
+
+  if (remoteUrl) {
+    try {
+      return await fetchQuotes(remoteUrl);
+    } catch (err) {
+      console.warn("Live feedback feed failed; falling back to local JSON", err);
+    }
+  }
+
+  try {
+    return await fetchQuotes(localUrl);
+  } catch (err) {
+    console.warn("Could not load feedback", err);
+    return [];
+  }
+}
+
+function initFeedbackLoop(quotes = []) {
+  const root = document.querySelector("[data-feedback-root]");
+  const track = document.querySelector("[data-feedback-track]");
+  const empty = document.querySelector("[data-feedback-empty]");
+  const prevBtn = document.querySelector("[data-quotes-prev]");
+  const nextBtn = document.querySelector("[data-quotes-next]");
+  if (!root || !track) return;
+
+  track.innerHTML = "";
+
+  if (!quotes.length) {
+    if (empty) empty.hidden = false;
+    track.hidden = true;
+    if (prevBtn) prevBtn.hidden = true;
+    if (nextBtn) nextBtn.hidden = true;
+    return;
+  }
+
+  if (empty) empty.hidden = true;
+  track.hidden = false;
+
+  quotes.forEach((q, i) => {
+    const article = document.createElement("article");
+    article.className = "quote-card reveal is-visible";
+    article.style.setProperty("--d", `${Math.min(i * 80, 400)}ms`);
+    const quoteEl = document.createElement("p");
+    quoteEl.className = "quote-card__quote";
+    quoteEl.textContent = q.quote.startsWith("“") || q.quote.startsWith('"') ? q.quote : `“${q.quote}”`;
+    const metaEl = document.createElement("p");
+    metaEl.className = "quote-card__meta";
+    metaEl.textContent = q.meta
+      ? q.meta.startsWith("-") || q.meta.startsWith("–") || q.meta.startsWith("—")
+        ? q.meta.replace(/^[—–-]\s*/, "- ")
+        : `- ${q.meta}`
+      : "";
+    article.appendChild(quoteEl);
+    if (metaEl.textContent) article.appendChild(metaEl);
+    track.appendChild(article);
+  });
+
   const origCards = [...track.querySelectorAll(".quote-card")];
   const n = origCards.length;
-  if (n < 2) return;
+  if (n < 2) {
+    if (prevBtn) prevBtn.hidden = true;
+    if (nextBtn) nextBtn.hidden = true;
+    return;
+  }
+
+  if (prevBtn) prevBtn.hidden = false;
+  if (nextBtn) nextBtn.hidden = false;
 
   const cloneBatch = (cards) =>
     cards.map((c) => {
@@ -864,7 +871,7 @@ function initFeedbackLoop() {
   };
 
   let { setW, cardW, rawCardW } = measure();
-  const centerOffset = () => setW * 3 - (track.offsetWidth / 2) + (rawCardW / 2);
+  const centerOffset = () => setW * 3 - track.offsetWidth / 2 + rawCardW / 2;
   track.style.scrollBehavior = "auto";
   track.scrollLeft = centerOffset();
   track.style.scrollBehavior = "";
@@ -897,8 +904,6 @@ function initFeedbackLoop() {
     track.style.scrollBehavior = "";
   });
 
-  const prevBtn = document.querySelector("[data-quotes-prev]");
-  const nextBtn = document.querySelector("[data-quotes-next]");
   const scrollByCard = (dir) => {
     const gap = parseFloat(getComputedStyle(track).gap) || 0;
     const cardW = track.querySelector(".quote-card").offsetWidth + gap;
@@ -909,7 +914,7 @@ function initFeedbackLoop() {
 }
 
 function initBackFaceFit() {
-  const cards = $all("#eboard .person-card");
+  const cards = $all("#leadership .person-card");
   if (!cards.length) return;
 
   const fitBack = (card) => {
@@ -938,15 +943,15 @@ function initBackFaceFit() {
 
       allText.forEach((el) => {
         const cur = parseFloat(getComputedStyle(el).fontSize);
-        el.style.fontSize = Math.max(cur * step, 7) + "px";
+        el.style.fontSize = Math.max(cur * step, 11) + "px";
       });
 
       if (flip) {
         const curW = parseFloat(getComputedStyle(flip).width);
         const curFS = parseFloat(getComputedStyle(flip).fontSize);
-        flip.style.width = Math.max(curW * step, 16) + "px";
-        flip.style.height = Math.max(curW * step, 16) + "px";
-        flip.style.fontSize = Math.max(curFS * step, 8) + "px";
+        flip.style.width = Math.max(curW * step, 22) + "px";
+        flip.style.height = Math.max(curW * step, 22) + "px";
+        flip.style.fontSize = Math.max(curFS * step, 12) + "px";
       }
 
       if (details) {
@@ -1033,9 +1038,7 @@ if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
 initReveal();
 initCountups();
-initCountdown();
 initCarousel();
-initFeedbackLoop();
 initPersonCardFlip();
 initBackFaceFit();
 initEboardEqualHeights();
@@ -1043,3 +1046,10 @@ initHeroLogoSizing();
 initFaqAccordion();
 initAmbientMotion();
 initSectionScrollMotion();
+
+(async () => {
+  const next = await loadNextMeeting();
+  initCountdown(next);
+  const quotes = await loadFeedbackQuotes();
+  initFeedbackLoop(quotes);
+})();

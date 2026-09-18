@@ -1,45 +1,54 @@
-# Quantum Club — one-page website
+# Quantum Technologies Club @ URI
 
-This folder is a **single-page** club website with:
+Single-page club site for **QTC@URI**.
 
-- **Scroll reveal animations** and a sticky “story” section (Apple-ish scrolling feel)
-- **Pop-up modals** for mission, E-board bios, involvement, resources, etc.
-- **Count-up stats** (members/projects/meetings/workshops)
+Official URI page: https://web.uri.edu/engineering/quantum-technologies-club/
 
 ## Run it
-
-Simplest: open `index.html` in your browser.
-
-If your browser blocks some features when opening a file directly, run a tiny local server:
 
 ```bash
 python3 -m http.server 5173
 ```
 
-Then open `http://localhost:5173`.
+Open `http://localhost:5173` (needed so `data/*.json` can load).
 
-## Customize content
+## Update the next meeting
 
-Most content is editable in **one place**:
+Edit **one file**: `data/meetings.json`
 
-- `script.js`
-  - Update `SITE.numbers` (member counts, etc.)
-  - Update `SITE.links` (email, Discord, Instagram, interest form)
-  - Update modal text in `MODALS`
+```json
+{
+  "meetings": [
+    {
+      "title": "Workshop: Intro to Qiskit",
+      "datetime": "2026-10-01T18:00:00-04:00",
+      "location": "Fascitelli 240"
+    }
+  ]
+}
+```
 
-The page layout/sections are in:
+The site automatically picks the next upcoming meeting for the hero countdown.
 
-- `index.html`
+## Feedback quotes
 
-The design/animations are in:
+Quotes load from `data/feedback.json` (starts empty), or from a live Google Apps Script feed.
 
-- `styles.css`
+**Automated + moderated setup:** see [docs/FEEDBACK_AUTOMATION.md](docs/FEEDBACK_AUTOMATION.md)
 
-## What to send me next (so I can refine it with real details)
+```json
+{
+  "quotes": [
+    { "quote": "I showed up knowing nothing...", "meta": "First-year member" }
+  ]
+}
+```
 
-- **Mission**: 2–4 sentences (or bullets)
-- **E-board**: names + roles + 2–3 sentence bios (and photos if you have them)
-- **How to get involved**: meeting time/place + Discord + interest form
-- **Member opinions**: 3–8 short quotes (name optional)
-- **Stats**: active member count + meetings/workshops per semester
+Optional live feed: set `SITE.links.feedbackFeed` in `script.js` to your Apps Script web app URL.
 
+## Other content
+
+- Layout / sections: `index.html`
+- Design: `styles.css`
+- Club email, Instagram, forms, URI page: `SITE` in `script.js`
+- Partner logos / headshots: `assets/`

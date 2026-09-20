@@ -16,9 +16,11 @@ const SITE = {
       "https://docs.google.com/forms/d/e/1FAIpQLSdcFnzuwwuJMQlfOAs_qJxDN5FdKwRQMDTtZ8ulkYRlIueIpg/viewform?usp=header",
     feedbackForm:
       "https://docs.google.com/forms/d/e/1FAIpQLSdv2BLMbgFet0sQyglNOvpgxpHw0gePP94R7OScP9gAvMetkQ/viewform?usp=publish-editor",
-    // Collaboration ideas (talks, workshops, opportunities, newsletter).
+    // Collaboration / partner interest (talks, workshops, sponsorship, newsletter).
     collaborateForm:
       "https://docs.google.com/forms/d/e/1FAIpQLSdnTds0ULRDo8tC5GdcmsoSwXozxJIemowaWneJm-UgpPdnHw/viewform?usp=publish-editor",
+    partnerForm:
+      "https://docs.google.com/forms/d/e/1FAIpQLScnJSQcfyLOe87E0oXgQopsg0GZaB0Qa9-NosdoUEOKuNYMOQ/viewform?usp=header",
     // Live feed from Google Apps Script (see docs/FEEDBACK_AUTOMATION.md).
     // Paste your web app /exec URL here after deploying the feedback feed script.
     feedbackFeed: "https://script.google.com/macros/s/AKfycbzYLW1KOj7vGyyPANmMHybe-K0GcY6TXQltFm0V_tYED70A82grGP8muuaP1DGyk5D-bw/exec",
@@ -29,10 +31,6 @@ const SITE = {
     location: "Location TBD",
   },
 };
-
-const collaborateIdeaHref = () =>
-  SITE.links.collaborateForm?.trim() ||
-  `mailto:${SITE.links.email}?subject=QTC%40URI%20Collaboration%20Idea`;
 
 const MODALS = {
   mission: {
@@ -124,16 +122,6 @@ const MODALS = {
         <li><strong>Competitions</strong>: hackathons, conferences, and programming challenges</li>
       </ul>
       <p>Specific programs and opportunities may vary by semester based on member interest, available resources, and partnerships.</p>
-    `,
-  },
-  collaborateIdea: {
-    title: "Submit Idea",
-    body: () => `
-      <p>Tell us how you want to collaborate with ${SITE.shortName}: give a talk, host a workshop, share an opportunity, or contribute to the newsletter.</p>
-      <div class="modal-actions">
-        <a class="button button--primary" href="${collaborateIdeaHref()}" target="_blank" rel="noreferrer">Open form</a>
-        <button class="button button--ghost" data-modal-close>Close</button>
-      </div>
     `,
   },
   contact: {

@@ -843,25 +843,23 @@ button {
 /* Leadership */
 .people-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0.9rem, 1.8vw, 1.5rem);
-  padding-inline: clamp(0.2rem, 1vw, 0.7rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.4vw, 2rem);
   align-items: stretch;
 }
 
 #leadership .people-grid {
-  --card-pad: clamp(1rem, 1.4vw, 1.35rem);
-  --avatar-outer: clamp(6.4rem, 8.5vw, 8.25rem);
-  --avatar-inner: clamp(4.6rem, 6.1vw, 5.95rem);
-  --name-size: clamp(1rem, 1.2vw, 1.32rem);
-  --role-size: clamp(0.85rem, 1vw, 0.96rem);
-  --icon-size: clamp(2.2rem, 2.7vw, 2.6rem);
-  --flip-size: clamp(2rem, 2.4vw, 2.4rem);
+  --card-pad: clamp(1.15rem, 2vw, 1.6rem);
+  --avatar-outer: clamp(7.25rem, 11vw, 9.5rem);
+  --avatar-inner: clamp(5.25rem, 8vw, 6.9rem);
+  --name-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  --role-size: clamp(0.9rem, 1.2vw, 1.05rem);
+  --icon-size: clamp(2.4rem, 3vw, 2.8rem);
   --face-gap: clamp(0.4rem, 0.75vw, 0.65rem);
 }
 
 .leadership-advisor-header {
-  margin-top: clamp(2.2rem, 4.5vw, 3.2rem);
+  margin-top: clamp(3rem, 5vw, 3.75rem);
   margin-bottom: clamp(0.85rem, 2vw, 1.25rem);
 }
 
@@ -877,7 +875,6 @@ button {
   gap: clamp(1rem, 2.4vw, 1.75rem);
   width: min(100%, 40rem);
   margin-inline: auto;
-  padding-inline: clamp(0.75rem, 3vw, 1.25rem);
 }
 
 .advisors-grid--single {
@@ -979,7 +976,6 @@ button {
   .advisors-grid,
   .advisors-grid--single {
     width: min(100%, 22rem);
-    padding-inline: clamp(0.85rem, 4vw, 1.25rem);
   }
 
   .advisor-card {
@@ -993,7 +989,6 @@ button {
 .person-card {
   position: relative;
   perspective: 920px;
-  min-height: clamp(21rem, 36vw, 26rem);
   min-width: 0;
   outline: none;
   transform-style: preserve-3d;
@@ -1018,8 +1013,8 @@ button {
 }
 
 .person-card__face {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform-style: preserve-3d;
@@ -1040,72 +1035,18 @@ button {
 }
 
 #leadership .person-card__face--front {
-  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  grid-template-rows: none;
   align-content: stretch;
   justify-items: center;
   gap: var(--face-gap);
   text-align: center;
 }
 
-#leadership .person-card__flip {
-  justify-self: center;
-}
-
-#leadership .person-card__face--back {
-  justify-items: stretch;
-  align-content: start;
-  text-align: left;
-  gap: clamp(0.55rem, 1.2vw, 0.95rem);
-  padding-block: clamp(1.1rem, 2vw, 1.5rem);
-  overflow: auto;
-}
-
-#leadership .person-card__face--back .person-card__name {
-  justify-self: start;
-  position: relative;
-  z-index: 2;
-  font-size: clamp(1rem, 1.4vw, 1.3rem);
-  max-width: 100%;
-  white-space: normal;
-  overflow-wrap: anywhere;
-  line-height: 1.25;
-  margin: 0;
-}
-
-#leadership .person-card__face--back .person-card__details {
-  justify-self: stretch;
-  max-width: 100%;
-  min-width: 0;
-  position: relative;
-  z-index: 2;
-  gap: clamp(0.55rem, 1.1vw, 0.85rem);
-  flex: 1;
-}
-
-#leadership .person-card__face--back .person-card__details dt {
-  font-size: clamp(0.72rem, 1.1vw, 0.85rem);
-}
-
-#leadership .person-card__face--back .person-card__details dd {
-  font-size: clamp(0.88rem, 1.25vw, 1.02rem);
-  overflow-wrap: anywhere;
-  white-space: normal;
-  line-height: 1.4;
-}
-
-#leadership .person-card__face--back .person-card__flip {
-  width: var(--flip-size);
-  height: var(--flip-size);
-  font-size: calc(var(--flip-size) * 0.62);
-  justify-self: center;
-  margin-top: auto;
-}
-
 .person-card__face--front {
   z-index: 2;
   transform: none;
   opacity: 1;
-  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  grid-template-rows: none;
   justify-items: center;
   text-align: center;
   gap: clamp(0.55rem, 1.2vw, 0.9rem);
@@ -1137,38 +1078,6 @@ button {
       rgba(30, 98, 179, 0.2) 100%);
   opacity: 0.2;
   transition: none;
-}
-
-.person-card__face--back {
-  z-index: 1;
-  opacity: 0;
-  transform: none;
-  filter: none;
-  pointer-events: none;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: clamp(0.7rem, 1.4vw, 1.05rem);
-}
-
-.person-card[data-flipped="true"] .person-card__face--front {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.person-card[data-flipped="true"] .person-card__face--front::before {
-  opacity: 0.2;
-}
-
-.person-card[data-flipped="true"] .person-card__face--front::after {
-  opacity: 0.2;
-}
-
-.person-card[data-flipped="true"] .person-card__face--back {
-  opacity: 1;
-  transform: none;
-  filter: none;
-  pointer-events: auto;
-  z-index: 3;
-  box-shadow: 0 16px 32px rgba(9, 44, 88, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.24);
 }
 
 .person-card__avatar-wrap {
@@ -1311,58 +1220,16 @@ button {
   stroke-linejoin: round;
 }
 
-.person-card__flip {
-  appearance: none;
-  border: 1px solid transparent;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: calc(var(--flip-size, 2.4rem) * 0.72);
-  line-height: 1;
-  cursor: pointer;
-  justify-self: center;
-  width: var(--flip-size, clamp(2.1rem, 4vw, 2.6rem));
-  height: var(--flip-size, clamp(2.1rem, 4vw, 2.6rem));
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  padding: 0;
+.person-card__meta {
+  margin: 0;
+  font-size: clamp(0.85rem, 1vw, 0.96rem);
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.4;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
   position: relative;
   z-index: 2;
-  transition: transform 180ms var(--ease), background 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
-}
-
-.person-card__flip:hover {
-  color: rgba(255, 255, 255, 1);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-1px);
-}
-
-.person-card__flip:focus-visible {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.24);
-}
-
-.person-card__details {
-  margin: 0;
-  display: grid;
-  gap: clamp(0.85rem, 1.3vw, 1rem);
-  align-content: start;
-}
-
-.person-card__details dt {
-  margin: 0;
-  font-size: 0.95rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.person-card__details dd {
-  margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.35;
-  color: rgba(255, 255, 255, 0.86);
 }
 
 /* Steps */
@@ -2606,25 +2473,17 @@ button {
 }
 
 /* Leadership responsive layout */
-@media (max-width: 1200px) {
+@media (max-width: 1100px) {
   #leadership .people-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(1.1rem, 2.4vw, 1.75rem);
-    max-width: 44rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(1.25rem, 3vw, 1.75rem);
+    max-width: min(36rem, 100% - 2rem);
     margin-inline: auto;
-    padding-inline: clamp(0.75rem, 3vw, 1.25rem);
-    --card-pad: clamp(1.15rem, 2.8vw, 1.55rem);
-    --avatar-outer: clamp(7.25rem, 22vw, 9.5rem);
-    --avatar-inner: clamp(5.25rem, 16vw, 6.9rem);
-    --name-size: clamp(1.15rem, 3.4vw, 1.45rem);
-    --role-size: clamp(0.9rem, 2.6vw, 1.05rem);
-    --icon-size: clamp(2.5rem, 7vw, 2.9rem);
-    --flip-size: clamp(2.2rem, 6vw, 2.6rem);
-    --face-gap: clamp(0.5rem, 1.6vw, 0.8rem);
   }
 
-  #leadership .person-card {
-    min-height: clamp(23rem, 58vw, 28rem);
+  /* room for the scroll-zoom, which grows the stacked grid downward */
+  .leadership-advisor-header {
+    margin-top: 4.25rem;
   }
 }
 
@@ -2632,32 +2491,55 @@ button {
   #leadership .people-grid {
     grid-template-columns: minmax(0, 1fr);
     max-width: 22rem;
-    gap: 1.15rem;
-    padding-inline: clamp(0.85rem, 4vw, 1.15rem);
-    --card-pad: 1.25rem;
+    gap: 1.25rem;
+    --card-pad: 1.35rem 1.25rem;
     --avatar-outer: 8.5rem;
     --avatar-inner: 6.15rem;
     --name-size: 1.35rem;
     --role-size: 0.98rem;
     --icon-size: 2.75rem;
-    --flip-size: 2.45rem;
     --face-gap: 0.7rem;
   }
 
-  #leadership .person-card {
-    min-height: 24.5rem;
+
+}
+
+/* Side-by-side card: photo left, text right */
+@media (min-width: 561px) {
+  #leadership .people-grid {
+    --avatar-outer: 7.75rem;
+    --avatar-inner: 5.7rem;
+    --name-size: clamp(1.1rem, 1.5vw, 1.35rem);
+    --role-size: 0.95rem;
   }
 
-  #leadership .person-card__face--back .person-card__name {
-    font-size: 1.2rem;
+  #leadership .person-card__face--front {
+    grid-template-columns: auto minmax(0, 1fr);
+    justify-items: start;
+    align-content: center;
+    align-items: center;
+    column-gap: clamp(1rem, 2vw, 1.5rem);
+    row-gap: 0.3rem;
+    text-align: left;
   }
 
-  #leadership .person-card__face--back .person-card__details dt {
-    font-size: 0.78rem;
+  #leadership .person-card__avatar-wrap {
+    grid-column: 1;
+    grid-row: 1 / span 5;
+    margin: 0;
   }
 
-  #leadership .person-card__face--back .person-card__details dd {
-    font-size: 0.98rem;
+  #leadership .person-card__face--front > :not(.person-card__avatar-wrap) {
+    grid-column: 2;
+  }
+
+  #leadership .person-card__meta {
+    font-size: 0.9rem;
+  }
+
+  #leadership .person-card__links {
+    margin-top: 0.6rem;
+    justify-content: flex-start;
   }
 }
 
@@ -2685,12 +2567,6 @@ button {
     width: 2.05rem;
     height: 2.05rem;
     font-size: 0.95rem;
-  }
-
-  .person-card__flip {
-    width: 1.85rem;
-    height: 1.85rem;
-    font-size: 1.15rem;
   }
 
   .person-card__face {
@@ -2777,8 +2653,7 @@ button {
   .advisor-card__icon,
   .person-card__inner,
   .person-card__face,
-  .person-card__icon-link,
-  .person-card__flip {
+  .person-card__icon-link {
     transition: none;
   }
 
@@ -2786,8 +2661,7 @@ button {
     transition: none;
   }
 
-  .person-card__face--front,
-  .person-card__face--back {
+  .person-card__face--front {
     animation: none !important;
   }
 

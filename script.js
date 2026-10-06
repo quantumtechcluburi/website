@@ -670,7 +670,9 @@ function initSectionScrollMotion() {
     const shiftAmount = isMobile ? 14 : 20;
 
     sections.forEach((section) => {
-      const rect = section.getBoundingClientRect();
+      // Peak zoom when the section's focus block (if any) is centered, not the whole section.
+      const anchor = section.querySelector("[data-scroll-focus]") || section;
+      const rect = anchor.getBoundingClientRect();
       const centerY = rect.top + rect.height / 2;
       const progress = clamp((centerY - vh / 2) / (vh * 0.78), -1, 1);
       const focusTarget = 1 - Math.abs(progress);
@@ -901,125 +903,6 @@ function initFeedbackLoop(quotes = []) {
   if (nextBtn) nextBtn.addEventListener("click", () => scrollByCard(1));
 }
 
-function initBackFaceFit() {
-  const cards = $all("#leadership .person-card");
-  if (!cards.length) return;
-
-  const fitBack = (card) => {
-    const back = card.querySelector(".person-card__face--back");
-    if (!back) return;
-    const name = back.querySelector(".person-card__name");
-    const dts = back.querySelectorAll(".person-card__details dt");
-    const dds = back.querySelectorAll(".person-card__details dd");
-    const flip = back.querySelector(".person-card__flip");
-    const details = back.querySelector(".person-card__details");
-    const allText = [name, ...dts, ...dds].filter(Boolean);
-
-    allText.forEach((el) => { el.style.fontSize = ""; });
-    if (flip) { flip.style.width = ""; flip.style.height = ""; flip.style.fontSize = ""; }
-    if (details) details.style.gap = "";
-    back.style.gap = "";
-    back.style.padding = "";
-
-    const containerH = back.offsetHeight;
-    if (!containerH) return;
-
-    let attempts = 0;
-    while (back.scrollHeight > containerH && attempts < 8) {
-      const ratio = containerH / back.scrollHeight;
-      const step = Math.max(ratio, 0.8);
-
-      allText.forEach((el) => {
-        const cur = parseFloat(getComputedStyle(el).fontSize);
-        el.style.fontSize = Math.max(cur * step, 11) + "px";
-      });
-
-      if (flip) {
-        const curW = parseFloat(getComputedStyle(flip).width);
-        const curFS = parseFloat(getComputedStyle(flip).fontSize);
-        flip.style.width = Math.max(curW * step, 22) + "px";
-        flip.style.height = Math.max(curW * step, 22) + "px";
-        flip.style.fontSize = Math.max(curFS * step, 12) + "px";
-      }
-
-      if (details) {
-        const curGap = parseFloat(getComputedStyle(details).gap) || 0;
-        details.style.gap = Math.max(curGap * step, 2) + "px";
-      }
-
-      const curBackGap = parseFloat(getComputedStyle(back).gap) || 0;
-      back.style.gap = Math.max(curBackGap * step, 2) + "px";
-
-      const padTop = parseFloat(getComputedStyle(back).paddingTop) || 0;
-      const padBot = parseFloat(getComputedStyle(back).paddingBottom) || 0;
-      const padLR = parseFloat(getComputedStyle(back).paddingLeft) || 0;
-      if (padTop > 6) {
-        back.style.paddingTop = Math.max(padTop * step, 6) + "px";
-        back.style.paddingBottom = Math.max(padBot * step, 6) + "px";
-        back.style.paddingLeft = padLR + "px";
-        back.style.paddingRight = padLR + "px";
-      }
-
-      attempts++;
-    }
-  };
-
-  const fitAll = () => cards.forEach(fitBack);
-
-  fitAll();
-  window.addEventListener("load", fitAll);
-  window.addEventListener("resize", () => {
-    clearTimeout(window._backFaceFitT);
-    window._backFaceFitT = setTimeout(fitAll, 60);
-  });
-
-  const observer = new MutationObserver((mutations) => {
-    for (const m of mutations) {
-      if (m.attributeName === "data-flipped") {
-        const card = m.target.closest?.(".person-card") || m.target;
-        requestAnimationFrame(() => fitBack(card));
-      }
-    }
-  });
-  cards.forEach((card) => {
-    observer.observe(card, { attributes: true, attributeFilter: ["data-flipped"] });
-  });
-}
-
-/* E-board flip cards */
-function initPersonCardFlip() {
-  const cards = $all("[data-person-card]");
-  if (!cards.length) return;
-
-  const syncCardControls = (card) => {
-    const isFlipped = card.getAttribute("data-flipped") === "true";
-    card.querySelectorAll("[data-person-flip]").forEach((btn) => {
-      btn.setAttribute("aria-expanded", isFlipped ? "true" : "false");
-    });
-  };
-
-  const toggleCard = (card) => {
-    const isFlipped = card.getAttribute("data-flipped") === "true";
-    card.setAttribute("data-flipped", isFlipped ? "false" : "true");
-    syncCardControls(card);
-  };
-
-  cards.forEach((card) => {
-    if (card.getAttribute("data-flipped") !== "true") {
-      card.setAttribute("data-flipped", "false");
-    }
-    syncCardControls(card);
-  });
-
-  $all("[data-person-flip]").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const card = e.currentTarget.closest("[data-person-card]");
-      if (!card) return;
-      toggleCard(card);
-    });
-  });
-}
-
 /* Footer year */
 const yearEl = document.querySelector("[data-year]");
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
@@ -1027,8 +910,6 @@ if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 initReveal();
 initCountups();
 initCarousel();
-initPersonCardFlip();
-initBackFaceFit();
 initEboardEqualHeights();
 initHeroLogoSizing();
 initFaqAccordion();

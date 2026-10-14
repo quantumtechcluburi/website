@@ -497,9 +497,9 @@ async function loadNextMeeting() {
     }
 
     SITE.nextEvent = {
-      title: "Fall 2026 meetings coming soon",
-      datetime: "",
-      location: "The E-Board will share dates once member availability is collected.",
+      title: "QTC@URI Intro Meeting",
+      datetime: "2026-10-20T17:00:00-04:00",
+      location: "URI Engineering Building, Room 040",
     };
     return SITE.nextEvent;
   } catch (err) {

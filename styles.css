@@ -1361,8 +1361,25 @@ button {
   text-overflow: clip;
 }
 
+.next-card__detail {
+  margin: 0 0 0.28rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(0.74rem, 1.05vw, 0.84rem);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.next-card__detail[hidden] {
+  display: none;
+}
+
 .next-card__meta {
-  margin: 0;
+  margin: 0 0 -0.3rem;
+  padding-left: calc(var(--next-accent-offset) + 0.06rem);
+  text-align: center;
   color: rgba(255, 255, 255, 0.86);
   font-size: clamp(0.78rem, 1.1vw, 0.88rem);
   display: -webkit-box;

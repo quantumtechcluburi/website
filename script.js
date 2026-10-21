@@ -28,7 +28,10 @@ const SITE = {
   nextEvent: {
     title: "Next meeting TBD",
     datetime: "",
+    endDatetime: "",
     location: "Location TBD",
+    speaker: "",
+    topic: "",
   },
 };
 
@@ -491,14 +494,17 @@ async function loadNextMeeting() {
       SITE.nextEvent = {
         title: next.title || "Club meeting",
         datetime: next.datetime,
+        endDatetime: next.endDatetime || "",
         location: next.location || "Location TBD",
+        speaker: next.speaker || "",
+        topic: next.topic || "",
       };
       return SITE.nextEvent;
     }
 
     SITE.nextEvent = {
       title: "QTC@URI Intro Meeting",
-      datetime: "2026-10-20T17:00:00-04:00",
+      datetime: "2026-10-27T17:00:00-04:00",
       location: "URI Engineering Building, Room 040",
     };
     return SITE.nextEvent;
@@ -514,6 +520,7 @@ function initCountdown(eventConfig = SITE.nextEvent) {
 
   const titleEl = root.querySelector("[data-next-title]");
   const metaEl = root.querySelector("[data-next-meta]");
+  const detailEl = root.querySelector("[data-next-detail]");
   const parts = {
     days: root.querySelector('[data-countdown-part="days"]'),
     hours: root.querySelector('[data-countdown-part="hours"]'),
@@ -523,6 +530,11 @@ function initCountdown(eventConfig = SITE.nextEvent) {
 
   const event = eventConfig || SITE.nextEvent;
   if (titleEl) titleEl.textContent = event.title || "Next meeting";
+  if (detailEl) {
+    const detail = [event.topic, event.speaker].filter(Boolean).join(" • ");
+    detailEl.textContent = detail;
+    detailEl.hidden = !detail;
+  }
 
   if (!event.datetime) {
     if (metaEl) metaEl.textContent = event.location || "Details coming soon.";
@@ -543,7 +555,12 @@ function initCountdown(eventConfig = SITE.nextEvent) {
       hour: "numeric",
       minute: "2-digit",
     });
-    metaEl.textContent = `${dateStr} • ${event.location || "Location TBD"}`;
+    const endDate = event.endDatetime ? new Date(event.endDatetime) : null;
+    const endStr =
+      endDate && !Number.isNaN(endDate.getTime())
+        ? ` – ${endDate.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })}`
+        : "";
+    metaEl.textContent = `${dateStr}${endStr} • ${event.location || "Location TBD"}`;
   }
 
   function fitTextToLines(el, minSizePx = 10) {
@@ -576,6 +593,7 @@ function initCountdown(eventConfig = SITE.nextEvent) {
     const titleMin = isWide ? 15 : 11;
     const metaMin = isWide ? 13 : 10;
     fitTextToLines(titleEl, titleMin);
+    fitTextToLines(detailEl, metaMin - 1);
     fitTextToLines(metaEl, metaMin);
   }
 

@@ -28,6 +28,8 @@ Edit **one file**: `data/meetings.json`
 }
 ```
 
+Optional fields: `endDatetime` (shows a time range), `speaker` and `topic` (shown under the title).
+
 The site automatically picks the next upcoming meeting for the hero countdown.
 
 ## Feedback quotes

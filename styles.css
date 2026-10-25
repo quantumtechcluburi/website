@@ -230,6 +230,57 @@ button {
   color: #fff;
 }
 
+/* Pull to refresh (home screen web app only) */
+.ptr {
+  position: fixed;
+  top: var(--ptr-top, 0px);
+  left: 50%;
+  z-index: 40;
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(12, 50, 101, 0.92);
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(-60px);
+  pointer-events: none;
+  transition: transform 220ms var(--ease), opacity 220ms var(--ease), background 180ms var(--ease);
+}
+
+.ptr[data-state="pulling"] {
+  transition: background 180ms var(--ease);
+}
+
+.ptr[data-armed="true"] {
+  background: var(--a);
+  color: #fff;
+}
+
+.ptr svg {
+  width: 22px;
+  height: 22px;
+  transform: rotate(var(--ptr-rotate, 0deg));
+}
+
+.ptr[data-state="refreshing"] svg {
+  animation: ptr-spin 700ms linear infinite;
+}
+
+@keyframes ptr-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .icon-button {
   appearance: none;
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -2629,6 +2680,10 @@ button {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .ptr[data-state="refreshing"] svg {
+    animation: none;
   }
 
   .hero {

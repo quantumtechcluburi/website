@@ -343,6 +343,94 @@ function updateTopbar() {
 window.addEventListener("scroll", updateTopbar, { passive: true });
 updateTopbar();
 
+/* Pull to refresh: home screen web apps have no browser reload gesture */
+function initPullToRefresh() {
+  const isStandalone =
+    window.navigator.standalone === true ||
+    (window.matchMedia?.("(display-mode: standalone)")?.matches ?? false);
+  if (!isStandalone) return;
+
+  const threshold = 70;
+  const maxPull = 110;
+  const indicator = document.createElement("div");
+  indicator.className = "ptr";
+  indicator.setAttribute("aria-hidden", "true");
+  indicator.innerHTML =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+    '<path d="M20 12a8 8 0 1 1-2.34-5.66" /><path d="M20 4v4.5h-4.5" /></svg>';
+  document.body.appendChild(indicator);
+
+  let startX = 0;
+  let startY = 0;
+  let pull = 0;
+  let tracking = false;
+
+  function render() {
+    indicator.style.transform = `translateY(${pull - 60}px)`;
+    indicator.style.opacity = String(clamp(pull / threshold, 0, 1));
+    indicator.style.setProperty("--ptr-rotate", `${(pull / threshold) * 270}deg`);
+    indicator.dataset.armed = pull >= threshold ? "true" : "false";
+  }
+
+  function reset() {
+    tracking = false;
+    pull = 0;
+    indicator.dataset.state = "";
+    indicator.removeAttribute("style");
+    indicator.dataset.armed = "false";
+  }
+
+  window.addEventListener(
+    "touchstart",
+    (e) => {
+      if (indicator.dataset.state === "refreshing") return;
+      if (e.touches.length !== 1 || window.scrollY > 0) return;
+      if (modalEl?.dataset.open === "true") return;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      tracking = true;
+      // Slide out from under the topbar rather than over it.
+      indicator.style.setProperty("--ptr-top", `${topbar?.offsetHeight ?? 0}px`);
+      pull = 0;
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!tracking) return;
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
+      // Ignore sideways swipes (carousels) and upward scrolls.
+      if (pull === 0 && (dy <= 0 || Math.abs(dx) > dy)) {
+        if (Math.abs(dx) > 8 || dy < -8) reset();
+        return;
+      }
+      pull = clamp(dy * 0.5, 0, maxPull);
+      indicator.dataset.state = "pulling";
+      render();
+    },
+    { passive: true }
+  );
+
+  function release() {
+    if (!tracking) return;
+    tracking = false;
+    if (pull < threshold) {
+      reset();
+      return;
+    }
+    pull = threshold;
+    render();
+    indicator.dataset.state = "refreshing";
+    window.setTimeout(() => window.location.reload(), 250);
+  }
+
+  window.addEventListener("touchend", release, { passive: true });
+  window.addEventListener("touchcancel", reset, { passive: true });
+}
+
 /* Mobile menu */
 const mobileMenuBtn = document.querySelector("[data-mobile-menu-button]");
 const mobileMenu = document.querySelector("[data-mobile-menu]");
@@ -933,6 +1021,7 @@ initHeroLogoSizing();
 initFaqAccordion();
 initAmbientMotion();
 initSectionScrollMotion();
+initPullToRefresh();
 
 (async () => {
   const next = await loadNextMeeting();

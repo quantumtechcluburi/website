@@ -584,8 +584,12 @@ async function loadNextMeeting() {
         datetime: next.datetime,
         endDatetime: next.endDatetime || "",
         location: next.location || "Location TBD",
+        locationDetail: next.locationDetail || "",
+        format: next.format || "",
         speaker: next.speaker || "",
         topic: next.topic || "",
+        joinUrl: next.joinUrl || "",
+        flyer: next.flyer || "",
       };
       return SITE.nextEvent;
     }
@@ -606,9 +610,13 @@ function initCountdown(eventConfig = SITE.nextEvent) {
   const root = document.querySelector("[data-next-event]");
   if (!root) return;
 
+  const labelEl = root.querySelector("[data-next-label]");
   const titleEl = root.querySelector("[data-next-title]");
   const metaEl = root.querySelector("[data-next-meta]");
   const detailEl = root.querySelector("[data-next-detail]");
+  const actionsEl = root.querySelector("[data-next-actions]");
+  const joinEl = root.querySelector("[data-next-join]");
+  const flyerEl = root.querySelector("[data-next-flyer]");
   const parts = {
     days: root.querySelector('[data-countdown-part="days"]'),
     hours: root.querySelector('[data-countdown-part="hours"]'),
@@ -617,15 +625,30 @@ function initCountdown(eventConfig = SITE.nextEvent) {
   };
 
   const event = eventConfig || SITE.nextEvent;
-  if (titleEl) titleEl.textContent = event.title || "Next meeting";
+  // Talks lead with the topic as the headline; the speaker (or title) drops to the line below.
+  const isTalk = Boolean(event.topic);
+  root.classList.toggle("next-card--talk", isTalk);
+  if (labelEl) labelEl.textContent = event.speaker ? "Next meeting · Guest talk" : "Next meeting";
+  if (titleEl) titleEl.textContent = (isTalk ? event.topic : event.title) || "Next meeting";
   if (detailEl) {
-    const detail = [event.topic, event.speaker].filter(Boolean).join(" • ");
+    const detail = isTalk ? event.speaker || event.title || "" : event.speaker;
     detailEl.textContent = detail;
     detailEl.hidden = !detail;
   }
 
+  // Optional actions: online join link and full flyer; the row hides when neither is set.
+  if (joinEl) {
+    joinEl.hidden = !event.joinUrl;
+    if (event.joinUrl) joinEl.href = event.joinUrl;
+  }
+  if (flyerEl) {
+    flyerEl.hidden = !event.flyer;
+    if (event.flyer) flyerEl.href = event.flyer;
+  }
+  if (actionsEl) actionsEl.hidden = !event.joinUrl && !event.flyer;
+
   if (!event.datetime) {
-    if (metaEl) metaEl.textContent = event.location || "Details coming soon.";
+    setMetaStatus(event.location || "Details coming soon.");
     Object.values(parts).forEach((el) => {
       if (el) el.textContent = "--";
     });
@@ -636,19 +659,49 @@ function initCountdown(eventConfig = SITE.nextEvent) {
   if (Number.isNaN(eventDate.getTime())) return;
 
   if (metaEl) {
-    const dateStr = eventDate.toLocaleString(undefined, {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-    });
+    const timeOpts = { hour: "numeric", minute: "2-digit" };
+    const dayStr = eventDate.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" });
     const endDate = event.endDatetime ? new Date(event.endDatetime) : null;
-    const endStr =
-      endDate && !Number.isNaN(endDate.getTime())
-        ? ` – ${endDate.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })}`
-        : "";
-    metaEl.textContent = `${dateStr}${endStr} • ${event.location || "Location TBD"}`;
+    let timeStr = eventDate.toLocaleTimeString(undefined, timeOpts);
+    if (endDate && !Number.isNaN(endDate.getTime())) {
+      const endStr = endDate.toLocaleTimeString(undefined, timeOpts);
+      // "5:00 – 6:00 PM" instead of "5:00 PM – 6:00 PM" when both share AM/PM.
+      const period = endStr.match(/\s?[AP]M$/i)?.[0];
+      const startStr = period && timeStr.endsWith(period) ? timeStr.slice(0, -period.length) : timeStr;
+      timeStr = `${startStr} – ${endStr}`;
+    }
+    const whereLabel = event.format ? `Where · ${event.format}` : "Where";
+    // Two columns like the flyer: WHEN (day / time) | WHERE (room / building).
+    metaEl.classList.remove("is-status");
+    metaEl.replaceChildren(
+      buildMetaCol("When", dayStr, timeStr),
+      buildMetaCol(whereLabel, event.location || "Location TBD", event.locationDetail)
+    );
+  }
+
+  function buildMetaCol(label, main, sub) {
+    const col = document.createElement("div");
+    col.className = "next-card__col";
+    const labelEl = document.createElement("p");
+    labelEl.className = "next-card__col-label";
+    labelEl.textContent = label;
+    const mainEl = document.createElement("p");
+    mainEl.className = "next-card__col-main";
+    mainEl.textContent = main;
+    col.append(labelEl, mainEl);
+    if (sub) {
+      const subEl = document.createElement("p");
+      subEl.className = "next-card__col-sub";
+      subEl.textContent = sub;
+      col.append(subEl);
+    }
+    return col;
+  }
+
+  function setMetaStatus(text) {
+    if (!metaEl) return;
+    metaEl.classList.add("is-status");
+    metaEl.textContent = text;
   }
 
   function fitTextToLines(el, minSizePx = 10) {
@@ -681,8 +734,7 @@ function initCountdown(eventConfig = SITE.nextEvent) {
     const titleMin = isWide ? 15 : 11;
     const metaMin = isWide ? 13 : 10;
     fitTextToLines(titleEl, titleMin);
-    fitTextToLines(detailEl, metaMin - 1);
-    fitTextToLines(metaEl, metaMin);
+    fitTextToLines(detailEl, metaMin);
   }
 
   function updateNextCard() {
@@ -705,8 +757,8 @@ function initCountdown(eventConfig = SITE.nextEvent) {
       parts.hours.textContent = "0";
       parts.minutes.textContent = "0";
       parts.seconds.textContent = "0";
-      if (metaEl) {
-        metaEl.textContent = "Happening now or recently finished.";
+      if (metaEl && !metaEl.classList.contains("is-status")) {
+        setMetaStatus("Happening now or recently finished.");
         updateNextCard();
       }
       return;

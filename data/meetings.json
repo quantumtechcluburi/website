@@ -6,11 +6,26 @@
       "location": "URI Engineering Building, Room 040"
     },
     {
-      "title": "QTC@URI Club Meeting",
+      "title": "Guest Speaker: Chris Lirakis, LirakisQuantum",
       "datetime": "2026-10-27T17:00:00-04:00",
       "endDatetime": "2026-10-27T18:00:00-04:00",
-      "location": "URI Engineering Building, Room 040",
-      "topic": "Guest talk with Barbara Widholm postponed until further notice"
+      "format": "Hybrid",
+      "location": "Room 040",
+      "locationDetail": "URI Engineering Building",
+      "joinUrl": "https://meet.google.com/fqv-puqh-inp",
+      "speaker": "Chris Lirakis · LirakisQuantum",
+      "topic": "Future of Quantum Computing"
+    },
+    {
+      "title": "Guest Speaker: Barbara Widholm, State Street",
+      "datetime": "2026-11-03T17:00:00-05:00",
+      "endDatetime": "2026-11-03T18:00:00-05:00",
+      "format": "Hybrid",
+      "location": "Room 040",
+      "locationDetail": "URI Engineering Building",
+      "joinUrl": "https://teams.microsoft.com/meet/2899071627455302?p=2bdtUofx6Ogrj46dw0",
+      "speaker": "Barbara Widholm · State Street",
+      "topic": "Navigating the Quantum Era: Finance, Innovation, and Career Pathways"
     }
   ]
 }

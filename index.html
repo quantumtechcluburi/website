@@ -100,7 +100,7 @@
         <div class="hero__next reveal" id="next">
           <div class="next-card" data-next-event>
             <div class="next-card__main">
-              <p class="next-card__label">Next meeting</p>
+              <p class="next-card__label" data-next-label>Next meeting</p>
               <h3 class="next-card__title" data-next-title>Loading next meeting...</h3>
               <p class="next-card__detail" data-next-detail hidden></p>
             </div>
@@ -122,6 +122,11 @@
                 <div class="next-card__timer-value" data-countdown-part="seconds">--</div>
                 <div class="next-card__timer-label">Seconds</div>
               </div>
+            </div>
+            <div class="next-card__actions" data-next-actions hidden>
+              <a class="button button--primary next-card__join" data-next-join target="_blank" rel="noreferrer"
+                hidden>Join online →</a>
+              <a class="next-card__flyer" data-next-flyer target="_blank" rel="noreferrer" hidden>View flyer</a>
             </div>
           </div>
         </div>

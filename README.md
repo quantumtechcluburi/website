@@ -28,7 +28,14 @@ Edit **one file**: `data/meetings.json`
 }
 ```
 
-Optional fields: `endDatetime` (shows a time range), `speaker` and `topic` (shown under the title).
+Optional fields:
+- `endDatetime`: shows a time range.
+- `topic`: the talk name. When set, it becomes the card headline in place of `title`.
+- `speaker`: shown under the headline (e.g. "Name · Company") and labels the card "Guest talk".
+- `format`: e.g. "Hybrid", shown as "Where · Hybrid".
+- `locationDetail`: smaller line under `location` (e.g. `location: "Room 040"`, `locationDetail: "URI Engineering Building"`).
+- `joinUrl`: online meeting link (Google Meet, Teams, Zoom), shown as a "Join online" button.
+- `flyer`: path to the flyer image or PDF (e.g. `assets/flyers/2026-10-27-lirakis.png`), shown as a "View flyer" link.
 
 The site automatically picks the next upcoming meeting for the hero countdown.
 

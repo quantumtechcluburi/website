@@ -1061,6 +1061,100 @@ function initFeedbackLoop(quotes = []) {
   if (nextBtn) nextBtn.addEventListener("click", () => scrollByCard(1));
 }
 
+/* Save site chip: home screen + bookmark options */
+function initAddToHomeScreen() {
+  const root = document.querySelector("[data-a2hs]");
+  const openBtn = document.querySelector("[data-a2hs-install]");
+  const dismissBtn = document.querySelector("[data-a2hs-dismiss]");
+  const tip = document.querySelector("[data-a2hs-tip]");
+  const tipClose = document.querySelector("[data-a2hs-tip-close]");
+  const promptBtn = document.querySelector("[data-a2hs-prompt]");
+  const installOption = document.querySelector('[data-a2hs-option="install"]');
+  const bookmarkCopy = document.querySelector("[data-a2hs-bookmark-copy]");
+  if (!root || !openBtn || !dismissBtn || !tip) return;
+
+  const storageKey = "qtc-a2hs-dismissed";
+  const isStandalone =
+    window.navigator.standalone === true ||
+    (window.matchMedia?.("(display-mode: standalone)")?.matches ?? false) ||
+    (window.matchMedia?.("(display-mode: window-controls-overlay)")?.matches ?? false);
+
+  if (isStandalone || localStorage.getItem(storageKey) === "1") return;
+
+  const ua = navigator.userAgent || "";
+  const isIos =
+    /iphone|ipad|ipod/i.test(ua) ||
+    (navigator.platform === "MacIntel" && (navigator.maxTouchPoints || 0) > 1);
+  const isAndroid = /android/i.test(ua);
+  const isMac = /macintosh|mac os x/i.test(ua) && !isIos;
+  const isWindows = /windows/i.test(ua);
+
+  let deferredPrompt = null;
+
+  if (bookmarkCopy) {
+    if (isIos || isAndroid) {
+      bookmarkCopy.textContent = "Browser menu → Bookmarks / ★ (or Add to Reading List / Favorites)";
+    } else if (isMac) {
+      bookmarkCopy.textContent = "Press Cmd+D, or click the ★ / bookmark icon in the address bar";
+    } else if (isWindows) {
+      bookmarkCopy.textContent = "Press Ctrl+D, or click the ★ / bookmark icon in the address bar";
+    } else {
+      bookmarkCopy.textContent = "Press Cmd/Ctrl+D, or use your browser’s ★ / Bookmarks menu";
+    }
+  }
+
+  const setTipOpen = (open) => {
+    tip.hidden = !open;
+    openBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  };
+
+  const syncInstallOption = () => {
+    if (!installOption) return;
+    installOption.hidden = !deferredPrompt;
+  };
+
+  const runInstallPrompt = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    try {
+      await deferredPrompt.userChoice;
+    } catch {
+      /* ignore */
+    }
+    deferredPrompt = null;
+    syncInstallOption();
+    setTipOpen(false);
+    root.hidden = true;
+  };
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    syncInstallOption();
+    root.hidden = false;
+  });
+
+  root.hidden = false;
+  syncInstallOption();
+
+  openBtn.addEventListener("click", () => setTipOpen(tip.hidden));
+  promptBtn?.addEventListener("click", runInstallPrompt);
+  tipClose?.addEventListener("click", () => setTipOpen(false));
+
+  dismissBtn.addEventListener("click", () => {
+    localStorage.setItem(storageKey, "1");
+    setTipOpen(false);
+    root.hidden = true;
+  });
+
+  window.addEventListener("appinstalled", () => {
+    deferredPrompt = null;
+    syncInstallOption();
+    setTipOpen(false);
+    root.hidden = true;
+  });
+}
+
 /* Footer year */
 const yearEl = document.querySelector("[data-year]");
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
@@ -1074,6 +1168,7 @@ initFaqAccordion();
 initAmbientMotion();
 initSectionScrollMotion();
 initPullToRefresh();
+initAddToHomeScreen();
 
 (async () => {
   const next = await loadNextMeeting();

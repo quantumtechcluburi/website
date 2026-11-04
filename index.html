@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description"
     content="Quantum Technologies Club at the University of Rhode Island. Interdisciplinary learning, collaboration, and careers in quantum tech." />
+  <meta name="theme-color" content="#0f417d" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="QTC@URI" />
   <title>Quantum Technologies Club @ URI</title>
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png" />
@@ -547,6 +551,45 @@
         </button>
       </div>
       <div class="modal__body" data-modal-body></div>
+    </div>
+  </div>
+
+  <div class="a2hs" data-a2hs hidden>
+    <div class="a2hs__tip" id="a2hsTip" data-a2hs-tip hidden role="dialog" aria-labelledby="a2hsTipTitle">
+      <p class="a2hs__tip-title" id="a2hsTipTitle">Save this site</p>
+      <p class="a2hs__tip-lead">Keep meeting info one tap away.</p>
+      <ul class="a2hs__options">
+        <li class="a2hs__option" data-a2hs-option="install" hidden>
+          <strong>Install app</strong>
+          <span>Add QTC@URI like an app on this device.</span>
+          <button class="a2hs__option-action" type="button" data-a2hs-prompt>Install now</button>
+        </li>
+        <li class="a2hs__option" data-a2hs-option="ios-home">
+          <strong>iPhone / iPad · Home Screen</strong>
+          <span>Share → Add to Home Screen</span>
+        </li>
+        <li class="a2hs__option" data-a2hs-option="android-home">
+          <strong>Android · Home Screen</strong>
+          <span>Browser menu (⋮) → Add to Home screen / Install app</span>
+        </li>
+        <li class="a2hs__option" data-a2hs-option="bookmark">
+          <strong>Bookmark</strong>
+          <span data-a2hs-bookmark-copy>On a laptop: ★ or Cmd/Ctrl+D. On a phone: browser menu → Bookmarks / ★</span>
+        </li>
+      </ul>
+      <button class="a2hs__tip-close" type="button" data-a2hs-tip-close>Got it</button>
+    </div>
+    <div class="a2hs__bar">
+      <button class="a2hs__button" type="button" data-a2hs-install aria-expanded="false"
+        aria-controls="a2hsTip">
+        <svg class="a2hs__icon" viewBox="0 0 24 24" width="16" height="16" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+        </svg>
+        <span data-a2hs-label>Save site</span>
+      </button>
+      <button class="a2hs__dismiss" type="button" data-a2hs-dismiss aria-label="Dismiss">×</button>
     </div>
   </div>
 

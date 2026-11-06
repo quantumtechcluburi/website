@@ -26,6 +26,15 @@
       "joinUrl": "https://teams.microsoft.com/meet/2899071627455302?p=2bdtUofx6Ogrj46dw0",
       "speaker": "Barbara Widholm · State Street",
       "topic": "Navigating the Quantum Era: Finance, Innovation, and Career Pathways"
+    },
+    {
+      "title": "Led by the E-Board",
+      "datetime": "2026-11-10T17:00:00-05:00",
+      "endDatetime": "2026-11-10T18:00:00-05:00",
+      "format": "In person",
+      "location": "Room 040",
+      "locationDetail": "URI Engineering Building",
+      "topic": "Intro to Qiskit"
     }
   ]
 }

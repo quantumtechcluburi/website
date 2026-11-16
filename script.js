@@ -827,6 +827,22 @@ function initSectionScrollMotion() {
     const zoomBoost = isMobile ? 0.08 : 0.12;
     const shiftAmount = isMobile ? 14 : 20;
 
+    // Blocks marked [data-scroll-zoom] (e.g. the faculty advisors under Leadership)
+    // zoom on their own position instead of sharing their section's focus block.
+    $all("[data-scroll-zoom]").forEach((block) => {
+      const rect = block.getBoundingClientRect();
+      const centerY = rect.top + rect.height / 2;
+      const progress = clamp((centerY - vh / 2) / (vh * 0.78), -1, 1);
+      const focusTarget = 1 - Math.abs(progress);
+      const prevFocus = zoomState.get(block) ?? focusTarget;
+      let focus = focusTarget;
+      if (direction > 0) focus = Math.max(prevFocus, focusTarget);
+      else if (direction < 0) focus = progress < 0 ? Math.max(prevFocus, focusTarget) : Math.min(prevFocus, focusTarget);
+      zoomState.set(block, focus);
+      block.style.setProperty("--box-zoom", (baseZoom + focus * zoomBoost).toFixed(3));
+      block.style.setProperty("--section-scroll", `${(-progress * shiftAmount).toFixed(2)}px`);
+    });
+
     sections.forEach((section) => {
       // Peak zoom when the section's focus block (if any) is centered, not the whole section.
       const anchor = section.querySelector("[data-scroll-focus]") || section;

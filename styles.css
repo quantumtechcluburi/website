@@ -723,7 +723,7 @@ button {
 .section[data-scroll-motion="on"] .feedback-quotes,
 .section[data-scroll-motion="on"] .metric,
 .section[data-scroll-motion="on"] .partners-grid,
-.section[data-scroll-motion="on"] .advisors-grid,
+.section[data-scroll-motion="on"] .advisor-card,
 .section[data-scroll-motion="on"] .faq-list {
   transform: translate3d(0, calc(var(--section-scroll) * 0.18), 0) scale(var(--box-zoom));
   transform-origin: center top;
@@ -928,9 +928,8 @@ button {
 .advisors-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1rem, 2.4vw, 1.75rem);
-  width: min(100%, 40rem);
-  margin-inline: auto;
+  gap: clamp(1.25rem, 2.4vw, 2rem);
+  align-items: stretch;
 }
 
 .advisors-grid--single {
@@ -939,19 +938,17 @@ button {
 }
 
 .advisor-card {
-  display: grid;
-  justify-items: center;
-  gap: clamp(0.35rem, 1.2vw, 0.55rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(0.3rem, 0.75vw, 0.5rem);
   border-radius: clamp(1.1rem, 2.5vw, 1.5rem);
   border: 1px solid rgba(255, 255, 255, 0.28);
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.38) 0%, rgba(219, 234, 254, 0.2) 36%, rgba(24, 86, 156, 0.6) 100%);
   box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.24);
-  padding:
-    clamp(1.35rem, 4vw, 2.1rem)
-    clamp(1.25rem, 5vw, 2.4rem)
-    clamp(1.25rem, 3.5vw, 1.85rem);
-  text-align: center;
+  padding: clamp(1.15rem, 2vw, 1.6rem) clamp(1.25rem, 2.6vw, 2rem);
+  text-align: left;
   min-width: 0;
 }
 
@@ -964,8 +961,8 @@ button {
 }
 
 .advisor-card__name {
-  margin: clamp(0.15rem, 0.8vw, 0.35rem) 0 0;
-  font-size: clamp(1.35rem, 4.2vw, 1.85rem);
+  margin: 0;
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
   letter-spacing: -0.02em;
   line-height: 1.2;
   max-width: 100%;
@@ -973,7 +970,7 @@ button {
 
 .advisor-card__role {
   margin: 0;
-  font-size: clamp(0.98rem, 2.6vw, 1.12rem);
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
   color: rgba(255, 255, 255, 0.95);
   font-weight: 600;
   line-height: 1.4;
@@ -982,10 +979,9 @@ button {
 .advisor-card__dept,
 .advisor-card__meta {
   margin: 0;
-  font-size: clamp(0.92rem, 2.4vw, 1.05rem);
+  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
   color: rgba(255, 255, 255, 0.88);
   line-height: 1.45;
-  max-width: 28ch;
 }
 
 .advisor-card__links {
@@ -993,8 +989,9 @@ button {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: clamp(0.65rem, 2.2vw, 0.95rem);
-  margin-top: clamp(0.75rem, 2.4vw, 1.15rem);
+  gap: clamp(0.5rem, 1.4vw, 0.7rem);
+  margin-top: auto;
+  padding-top: clamp(0.6rem, 1.6vw, 0.9rem);
 }
 
 .advisor-card__icon {
@@ -1029,16 +1026,8 @@ button {
 }
 
 @media (max-width: 700px) {
-  .advisors-grid,
-  .advisors-grid--single {
-    width: min(100%, 22rem);
-  }
-
   .advisor-card {
-    padding:
-      clamp(1.25rem, 5vw, 1.6rem)
-      clamp(1.1rem, 5vw, 1.5rem)
-      clamp(1.15rem, 4.5vw, 1.45rem);
+    padding: clamp(1.1rem, 4.5vw, 1.4rem) clamp(1.1rem, 5vw, 1.5rem);
   }
 }
 
@@ -2667,6 +2656,28 @@ button {
   /* room for the scroll-zoom, which grows the stacked grid downward */
   .leadership-advisor-header {
     margin-top: 4.25rem;
+  }
+}
+
+/* Faculty advisors follow the leadership grid: one column, same side margins */
+@media (max-width: 1100px) {
+  .advisors-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(1.25rem, 3vw, 1.75rem);
+    max-width: min(36rem, 100% - 2rem);
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .advisors-grid {
+    max-width: 22rem;
+    gap: 1.25rem;
+  }
+
+  .advisor-card {
+    align-items: center;
+    text-align: center;
   }
 }
 

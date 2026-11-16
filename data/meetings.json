@@ -35,6 +35,16 @@
       "location": "Room 040",
       "locationDetail": "URI Engineering Building",
       "topic": "Intro to Qiskit"
+    },
+    {
+      "title": "Meet Our New Faculty Advisor: Jim McGwin",
+      "datetime": "2026-11-17T17:00:00-05:00",
+      "endDatetime": "2026-11-17T18:00:00-05:00",
+      "format": "In person",
+      "location": "Room 040",
+      "locationDetail": "URI Engineering Building",
+      "speaker": "Jim McGwin · Faculty Advisor",
+      "topic": "Quantum, AI, and Emerging Technologies: Where They Are Headed"
     }
   ]
 }

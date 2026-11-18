@@ -36,8 +36,9 @@ Optional fields:
 - `locationDetail`: smaller line under `location` (e.g. `location: "Room 040"`, `locationDetail: "URI Engineering Building"`).
 - `joinUrl`: online meeting link (Google Meet, Teams, Zoom), shown as a "Join online" button.
 - `flyer`: path to the flyer image or PDF (e.g. `assets/flyers/2026-10-27-lirakis.png`), shown as a "View flyer" link.
+- `status`: set to `"cancelled"` to skip the countdown. The card then shows the meeting `title` (e.g. "No meeting November 24") and optional `note` as the status line.
 
-The site automatically picks the next upcoming meeting for the hero countdown.
+The site automatically picks the next upcoming non-cancelled meeting for the hero countdown.
 
 ## Feedback quotes
 

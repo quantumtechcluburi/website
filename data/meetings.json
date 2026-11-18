@@ -45,6 +45,12 @@
       "locationDetail": "URI Engineering Building",
       "speaker": "Jim McGwin · Faculty Advisor",
       "topic": "Quantum, AI, and Emerging Technologies: Where They Are Headed"
+    },
+    {
+      "title": "No meeting November 24",
+      "datetime": "2026-11-24T17:00:00-05:00",
+      "status": "cancelled",
+      "note": "Thanksgiving week · Meetings resume the following Tuesday December 1st"
     }
   ]
 }

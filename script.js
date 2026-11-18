@@ -577,7 +577,9 @@ async function loadNextMeeting() {
       .filter((m) => !Number.isNaN(m._ts))
       .sort((a, b) => a._ts - b._ts);
 
-    const next = upcoming.find((m) => m._ts >= now - 60 * 60 * 1000) || null;
+    const isCancelled = (m) => String(m.status || "").toLowerCase() === "cancelled";
+    const horizon = now - 60 * 60 * 1000;
+    const next = upcoming.find((m) => m._ts >= horizon && !isCancelled(m)) || null;
     if (next) {
       SITE.nextEvent = {
         title: next.title || "Club meeting",
@@ -590,6 +592,18 @@ async function loadNextMeeting() {
         topic: next.topic || "",
         joinUrl: next.joinUrl || "",
         flyer: next.flyer || "",
+      };
+      return SITE.nextEvent;
+    }
+
+    // No active meeting queued: surface the nearest cancelled date so the site
+    // clearly says "no meeting" instead of a generic TBD.
+    const cancelledNext = upcoming.find((m) => m._ts >= horizon && isCancelled(m)) || null;
+    if (cancelledNext) {
+      SITE.nextEvent = {
+        title: cancelledNext.title || "No meeting this week",
+        datetime: "",
+        location: cancelledNext.note || cancelledNext.location || "Details coming soon.",
       };
       return SITE.nextEvent;
     }
@@ -647,7 +661,13 @@ function initCountdown(eventConfig = SITE.nextEvent) {
   }
   if (actionsEl) actionsEl.hidden = !event.joinUrl && !event.flyer;
 
+  const timerEl = root.querySelector(".next-card__timer");
+  if (timerEl) timerEl.hidden = !event.datetime;
+
   if (!event.datetime) {
+    if (labelEl && /no meeting/i.test(event.title || "")) {
+      labelEl.textContent = "Schedule update";
+    }
     setMetaStatus(event.location || "Details coming soon.");
     Object.values(parts).forEach((el) => {
       if (el) el.textContent = "--";

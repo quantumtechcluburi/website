@@ -51,6 +51,16 @@
       "datetime": "2026-11-24T17:00:00-05:00",
       "status": "cancelled",
       "note": "Thanksgiving week · Meetings resume the following Tuesday December 1st"
+    },
+    {
+      "title": "Guest Speaker: Brendon Lucas",
+      "datetime": "2026-12-01T17:00:00-05:00",
+      "endDatetime": "2026-12-01T18:00:00-05:00",
+      "format": "In person",
+      "location": "Room 040",
+      "locationDetail": "URI Engineering Building",
+      "speaker": "Brendon Lucas · Graduate Student, Physics",
+      "topic": "Introduction to Quantum Information Science: Qubits, Quantum Gates, and Quantum Computation"
     }
   ]
 }
